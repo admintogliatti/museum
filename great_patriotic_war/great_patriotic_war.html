@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Великая Отечественная | Музей Спецназа</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'flag-blue': '#0039A6',
+                        'flag-red': '#D52B1E',
+                        'soviet-gold': '#D4AF37',
+                        'dark-bg': '#0F1115',
+                        'card-bg': '#181A20',
+                    },
+                    backgroundImage: {
+                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F0F2F5;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(24, 26, 32, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-panel:hover {
+            background: rgba(24, 26, 32, 0.8);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(213, 43, 30, 0.15);
+        }
+
+        /* Ambient Light */
+        .ambient-light {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Анимация появления */
+        .fade-up {
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Искры */
+        .ember {
+            position: fixed;
+            bottom: -20px;
+            background: #FF4500;
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise linear infinite;
+            box-shadow: 0 0 5px #FFD700;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes rise {
+            0% { bottom: -20px; opacity: 0; transform: translateX(0); }
+            50% { opacity: 0.5; transform: translateX(20px); }
+            100% { bottom: 100vh; opacity: 0; transform: translateX(40px); }
+        }
+
+        /* Карточки сторон */
+        .side-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            min-height: 450px; /* Высокие карточки */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: #000; /* Черный фон на случай если картинка не прогрузится */
+        }
+        
+        /* Градиент для читаемости текста */
+        .side-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+            z-index: 10;
+        }
+
+        .side-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-cover: cover;
+            transition: transform 0.7s ease, filter 0.7s ease;
+            z-index: 0;
+            opacity: 0.8; /* Картинка чуть ярче */
+        }
+
+        .side-card:hover img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Искры -->
+    <div id="embers-container"></div>
+
+    <!-- Верхняя полоса -->
+    <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-[60]"></div>
+
+    <!-- Навигация -->
+    <nav class="fixed w-full z-50 top-0 pt-6 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 group hover:!translate-y-0 active:scale-95 transition-transform">
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-white transition-colors">В меню</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="relative min-h-screen pt-32 pb-20 w-full overflow-hidden">
+        
+        <!-- Фоновое свечение -->
+        <div class="ambient-light top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-flag-red/10 animate-pulse-slow"></div>
+        <div class="ambient-light bottom-0 right-0 w-[500px] h-[500px] bg-soviet-gold/5 animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            
+            <!-- Заголовок и Лонгрид -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-end">
+                
+                <!-- Текстовый блок -->
+                <div class="lg:col-span-7 fade-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-1 h-6 bg-flag-red"></div>
+                        <span class="text-soviet-gold font-bold tracking-[0.2em] uppercase text-sm block">1941 — 1945</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight break-words drop-shadow-2xl">
+                        ВЕЛИКАЯ <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">ПОБЕДА</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg max-w-xl leading-relaxed">
+                        Священная война. Путь от Брестской крепости до водружения Знамени Победы над Рейхстагом.
+                    </p>
+                </div>
+
+                <!-- Карточка-ссылка на Лонгрид -->
+                <a href="https://ru.wikipedia.org/wiki/Великая_Отечественная_война" target="_blank" class="lg:col-span-5 fade-up group cursor-pointer w-full" style="animation-delay: 0.2s;">
+                    <div class="glass-panel p-8 rounded-3xl border-l-4 border-l-flag-red relative overflow-hidden">
+                        <div class="absolute right-[-20px] top-[-20px] opacity-10 group-hover:opacity-20 transition-opacity">
+                            <svg class="w-40 h-40 text-flag-red" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z" /></svg>
+                        </div>
+                        
+                        <div class="flex justify-between items-start mb-8 relative z-10">
+                            <div class="w-12 h-12 bg-flag-red/20 text-flag-red rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                            </div>
+                            <span class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">HISTORY</span>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-soviet-gold transition-colors relative z-10">Хронология войны</h3>
+                        <p class="text-sm text-gray-400 mb-6 relative z-10">Читать подробную историческую справку о ходе боевых действий.</p>
+                        
+                        <div class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider relative z-10">
+                            <span>Читать</span>
+                            <svg class="w-4 h-4 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Разделитель -->
+            <div class="flex items-center gap-4 mb-12 fade-up" style="animation-delay: 0.3s;">
+                <div class="h-px bg-white/10 flex-grow"></div>
+                <span class="text-xs text-soviet-gold uppercase tracking-widest font-bold text-center">Экспозиция музея</span>
+                <div class="h-px bg-white/10 flex-grow"></div>
+            </div>
+
+            <!-- Сетка Сторон (2 колонки) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12">
+                
+                <!-- 1. СССР и союзники -->
+                <a href="exhibits_ussr.html" class="side-card group ring-1 ring-white/10 hover:ring-flag-red/50 fade-up" style="animation-delay: 0.4s;">
+                    <!-- КАРТИНКА (ussr.jpeg) -->
+                    <img src="ussr.jpg" alt="СССР и союзники">
+                    
+                    <div class="relative z-20">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-2 h-2 rounded-full bg-flag-red"></div>
+                            <span class="text-flag-red font-bold uppercase tracking-wider text-xs drop-shadow-md">СССР и союзники</span>
+                        </div>
+                        <h2 class="text-4xl font-black uppercase italic mb-3 text-white group-hover:text-soviet-gold transition-colors drop-shadow-lg">
+                            РККА
+                        </h2>
+                        <p class="text-gray-200 text-sm font-medium max-w-sm drop-shadow-md leading-relaxed">
+                            Оружие, форма и личные вещи бойцов Красной Армии и стран антигитлеровской коалиции.
+                        </p>
+                    </div>
+                    
+                    <!-- Декор -->
+                    <div class="absolute top-6 right-6 z-20 opacity-50 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:rotate-12">
+                         <svg class="w-16 h-16 text-flag-red drop-shadow-lg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z" /></svg>
+                    </div>
+                </a>
+
+                <!-- 2. Третий Рейх и страны ОСИ -->
+                <a href="exhibits_axis.html" class="side-card group ring-1 ring-white/10 hover:ring-gray-500/50 fade-up" style="animation-delay: 0.5s;">
+                    <!-- КАРТИНКА (naci.jpg) -->
+                    <img src="naci.jpg" alt="Третий Рейх и страны ОСИ" class="grayscale contrast-125">
+                    
+                    <div class="relative z-20">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-2 h-2 rounded-full bg-gray-500"></div>
+                            <span class="text-gray-300 font-bold uppercase tracking-wider text-xs drop-shadow-md">Третий Рейх и страны ОСИ</span>
+                        </div>
+                        <h2 class="text-4xl font-black uppercase italic mb-3 text-gray-200 group-hover:text-white transition-colors drop-shadow-lg">
+                            Вермахт
+                        </h2>
+                        <p class="text-gray-300 text-sm font-medium max-w-sm drop-shadow-md leading-relaxed">
+                            Трофейное оружие, снаряжение и награды противника. Свидетельства поверженной силы.
+                        </p>
+                    </div>
+                    
+                    <!-- Декор -->
+                    <div class="absolute top-6 right-6 z-20 opacity-30 group-hover:opacity-80 transition-opacity duration-300">
+                         <div class="w-12 h-12 border-2 border-gray-500 transform rotate-45 drop-shadow-lg"></div>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="border-t border-white/10 bg-[#0A0C10] py-8 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 opacity-50 text-xs">
+            <p class="text-center md:text-left">© 2026 Музей Боевой Славы.</p>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-white"></div>
+                <div class="w-2 h-2 rounded-full bg-flag-blue"></div>
+                <div class="w-2 h-2 rounded-full bg-flag-red"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипт Искр -->
+    <script>
+        const emberContainer = document.getElementById('embers-container');
+        const EMBER_COUNT = 30;
+
+        for(let i=0; i < EMBER_COUNT; i++) {
+            let ember = document.createElement('div');
+            ember.className = 'ember';
+            
+            let size = Math.random() * 3 + 1 + 'px';
+            ember.style.width = size;
+            ember.style.height = size;
+            
+            ember.style.left = Math.random() * 100 + 'vw';
+            
+            ember.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            ember.style.animationDelay = (Math.random() * 5) + 's';
+            
+            emberContainer.appendChild(ember);
+        }
+    </script>
+
+</body>
+</html>
