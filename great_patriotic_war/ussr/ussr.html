@@ -114,9 +114,10 @@
 
     <!-- Навигация -->
     <nav class="fixed w-full z-40 py-6 px-4 md:px-8">
-        <a href="ВОВ.html" class="inline-flex items-center gap-3 group bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:border-flag-red/50 transition-all">
+        <!-- Кнопка НАЗАД -->
+        <a href="../great_patriotic_war.html" class="inline-flex items-center gap-3 group bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:border-flag-red/50 transition-all">
             <svg class="w-4 h-4 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            <span class="text-xs font-bold uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">К разделам ВОВ</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">Назад</span>
         </a>
     </nav>
 
@@ -148,62 +149,42 @@
 
         <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
 
-            <!-- КАРТОЧКА 1 -->
-            <a href="экспонат_новый.html" class="exhibit-card rounded-2xl overflow-hidden group block flex flex-col h-full relative">
+            <!-- КАРТОЧКА 1: М-72 -->
+            <a href="ussr_artefacts/m-72.html" class="exhibit-card rounded-2xl overflow-hidden group block flex flex-col h-full relative">
                 <div class="relative aspect-[4/3] overflow-hidden bg-gray-800">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/PPSh-41.jpg/1200px-PPSh-41.jpg" 
-                         alt="ППШ-41" class="exhibit-img w-full h-full object-cover opacity-90 group-hover:opacity-100">
+                    <img src="ussr_artefacts/m-72-pictures/M-72-1.jpg" 
+                         alt="М-72" class="exhibit-img w-full h-full object-cover opacity-90 group-hover:opacity-100">
                     <div class="absolute top-3 right-3">
                         <span class="px-2 py-1 bg-black/60 border border-white/10 text-gray-300 text-[10px] font-bold font-mono rounded backdrop-blur-md">1941</span>
                     </div>
                 </div>
                 <div class="p-6 flex-grow flex flex-col justify-end relative border-t border-white/5">
+                    <p class="exhibit-type text-[10px] text-flag-red font-bold uppercase tracking-widest mb-2">Техника</p>
+                    <h3 class="exhibit-name text-xl font-bold text-white leading-tight mb-2 group-hover:text-soviet-gold transition-colors">
+                        М-72 — тяжелый советский мотоцикл
+                    </h3>
+                    <p class="text-xs text-gray-400 line-clamp-2">
+                        Надежный транспорт разведки и связи. Мобильность, проверенная фронтовыми дорогами.
+                    </p>
+                </div>
+            </a>
+
+            <!-- КАРТОЧКА 2: ДП-27 -->
+            <a href="ussr_artefacts/dp-27.html" class="exhibit-card rounded-2xl overflow-hidden group block flex flex-col h-full relative">
+                <div class="relative aspect-[4/3] overflow-hidden bg-gray-800">
+                    <img src="ussr_artefacts/dp-27-pictures/DP-27-1.jpg" 
+                         alt="ДП-27" class="exhibit-img w-full h-full object-cover opacity-90 group-hover:opacity-100">
+                    <div class="absolute top-3 right-3">
+                        <span class="px-2 py-1 bg-black/60 border border-white/10 text-gray-300 text-[10px] font-bold font-mono rounded backdrop-blur-md">1927</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-end relative border-t border-white/5">
                     <p class="exhibit-type text-[10px] text-flag-red font-bold uppercase tracking-widest mb-2">Стрелковое оружие</p>
                     <h3 class="exhibit-name text-xl font-bold text-white leading-tight mb-2 group-hover:text-soviet-gold transition-colors">
-                        Пистолет-пулемет Шпагина (ППШ-41)
+                        Ручной пулемет ДП-27
                     </h3>
                     <p class="text-xs text-gray-400 line-clamp-2">
-                        Символ советского солдата. Простой, надежный и скорострельный.
-                    </p>
-                </div>
-            </a>
-
-            <!-- КАРТОЧКА 2 -->
-            <a href="#" class="exhibit-card rounded-2xl overflow-hidden group block flex flex-col h-full relative">
-                <div class="relative aspect-[4/3] overflow-hidden bg-gray-800">
-                    <img src="https://images.unsplash.com/photo-1599347493721-39656461b272?q=80&w=2070" 
-                         alt="Форма" class="exhibit-img w-full h-full object-cover opacity-90 group-hover:opacity-100">
-                    <div class="absolute top-3 right-3">
-                        <span class="px-2 py-1 bg-black/60 border border-white/10 text-gray-300 text-[10px] font-bold font-mono rounded backdrop-blur-md">1943</span>
-                    </div>
-                </div>
-                <div class="p-6 flex-grow flex flex-col justify-end relative border-t border-white/5">
-                    <p class="exhibit-type text-[10px] text-flag-red font-bold uppercase tracking-widest mb-2">Униформа</p>
-                    <h3 class="exhibit-name text-xl font-bold text-white leading-tight mb-2 group-hover:text-soviet-gold transition-colors">
-                        Гимнастерка офицерская (обр. 1943)
-                    </h3>
-                    <p class="text-xs text-gray-400 line-clamp-2">
-                        С погонами, введенными после реформы обмундирования.
-                    </p>
-                </div>
-            </a>
-
-            <!-- КАРТОЧКА 3 -->
-            <a href="#" class="exhibit-card rounded-2xl overflow-hidden group block flex flex-col h-full relative">
-                <div class="relative aspect-[4/3] overflow-hidden bg-gray-800">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Order_of_the_Red_Star.jpg/800px-Order_of_the_Red_Star.jpg" 
-                         alt="Орден" class="exhibit-img w-full h-full object-cover opacity-90 group-hover:opacity-100">
-                    <div class="absolute top-3 right-3">
-                        <span class="px-2 py-1 bg-black/60 border border-white/10 text-gray-300 text-[10px] font-bold font-mono rounded backdrop-blur-md">1930</span>
-                    </div>
-                </div>
-                <div class="p-6 flex-grow flex flex-col justify-end relative border-t border-white/5">
-                    <p class="exhibit-type text-[10px] text-flag-red font-bold uppercase tracking-widest mb-2">Награды</p>
-                    <h3 class="exhibit-name text-xl font-bold text-white leading-tight mb-2 group-hover:text-soviet-gold transition-colors">
-                        Орден Красной Звезды
-                    </h3>
-                    <p class="text-xs text-gray-400 line-clamp-2">
-                        Одна из самых массовых и почетных боевых наград.
+                        «Дегтярёв пехотный». Главная огневая опора стрелкового отделения Красной Армии.
                     </p>
                 </div>
             </a>
