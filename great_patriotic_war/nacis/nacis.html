@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экспозиция: Противник | Музей Спецназа</title>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Настройки -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'steel-gray': '#718096',     
+                        'feldgrau': '#4A5568',       
+                        'dark-bg': '#050505',
+                        'card-bg': '#0A0A0A',
+                    },
+                    backgroundImage: {
+                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #C0C0C0; 
+            overflow-x: hidden;
+        }
+
+        /* Текстура шума (Грязь/Зернистость) */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Осколки (Четкие SVG) */
+        .shards-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .shard-path {
+            fill: rgba(255, 255, 255, 0.03);
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 1;
+        }
+
+        /* Поле поиска */
+        .search-input {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid #333;
+            color: #A0AEC0;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            background: #000;
+            border-color: #718096;
+            outline: none;
+            color: white;
+        }
+
+        /* Карточка трофея */
+        .exhibit-card {
+            background: #080808;
+            border: 1px solid #1A1A1A;
+            transition: all 0.3s ease;
+        }
+        .exhibit-card:hover {
+            border-color: #4A5568;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            background: #0D0D0D;
+        }
+        
+        .exhibit-img {
+            filter: grayscale(100%) contrast(110%) brightness(0.7);
+            transition: all 0.5s ease;
+        }
+        .exhibit-card:hover .exhibit-img {
+            filter: grayscale(0%) contrast(100%) brightness(0.9); /* Чуть темнее обычного даже при наведении */
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans">
+
+    <!-- Шум -->
+    <div class="noise-overlay"></div>
+
+    <!-- Фон: Осколки -->
+    <div class="shards-bg">
+        <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <!-- Острые, ломаные фигуры -->
+            <path class="shard-path" d="M-100,800 L400,200 L600,600 Z" />
+            <path class="shard-path" d="M1500,-100 L1200,400 L1800,300 Z" />
+            <path class="shard-path" d="M800,1200 L1000,800 L1400,1400 Z" />
+            <path class="shard-path" d="M200,0 L0,300 L-200,0 Z" />
+            <!-- Тонкие линии-трещины -->
+            <line x1="0" y1="1080" x2="600" y2="400" stroke="rgba(255,255,255,0.03)" stroke-width="2" />
+            <line x1="1920" y1="0" x2="1300" y2="500" stroke="rgba(255,255,255,0.03)" stroke-width="2" />
+        </svg>
+    </div>
+
+    <!-- Полоса триколора (На этой странице ТОЛЬКО вверху, как часть UI сайта, но не контента) -->
+    <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-50"></div>
+
+    <!-- Навигация -->
+    <nav class="fixed w-full z-40 py-6 px-4 md:px-8">
+        <a href="ВОВ.html" class="inline-flex items-center gap-3 group bg-black/80 backdrop-blur-md px-5 py-2.5 rounded-none border border-gray-800 hover:border-gray-600 transition-all">
+            <svg class="w-4 h-4 text-gray-600 group-hover:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">К разделам ВОВ</span>
+        </a>
+    </nav>
+
+    <!-- Заголовок -->
+    <header class="pt-32 pb-12 px-4 text-center relative z-10">
+        <!-- Метка -->
+        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 border border-gray-800 bg-black">
+            <div class="w-2 h-2 bg-gray-600 transform rotate-45"></div>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Вермахт • СС • Сателлиты</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-black mb-6 tracking-tight uppercase leading-none text-gray-300">
+            Оружие <span class="text-transparent bg-clip-text bg-gradient-to-b from-gray-500 to-black">Врага</span>
+        </h1>
+
+        <!-- Поиск -->
+        <div class="max-w-xl mx-auto relative group">
+            <input type="text" id="searchInput" onkeyup="filterExhibits()" placeholder="Поиск трофеев..." 
+                   class="search-input w-full py-4 px-6 text-sm md:text-base font-mono uppercase tracking-wider">
+            <div class="absolute right-5 top-4 text-gray-700 group-focus-within:text-gray-500 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Сетка экспонатов -->
+    <main class="flex-grow px-4 pb-24 max-w-7xl mx-auto w-full relative z-10">
+        
+        <div class="text-right text-xs text-gray-700 mb-4 font-mono uppercase" id="recordsCount"></div>
+
+        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+            <!-- КАРТОЧКА 1 (MP-40) -->
+            <a href="экспонат_новый.html" class="exhibit-card group block flex flex-col h-full relative">
+                <div class="relative aspect-[4/3] overflow-hidden bg-[#050505] border-b border-gray-900">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/MP40.jpg/1200px-MP40.jpg" 
+                         alt="MP-40" class="exhibit-img w-full h-full object-cover">
+                    <!-- Бейдж -->
+                    <div class="absolute top-0 right-0 p-3">
+                        <span class="px-2 py-1 bg-black border border-gray-800 text-gray-500 text-[9px] font-bold font-mono">
+                            DE-1940
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-end relative">
+                    <p class="exhibit-type text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Стрелковое оружие</p>
+                    <h3 class="exhibit-name text-lg font-bold text-gray-300 leading-tight mb-2 group-hover:text-white transition-colors">
+                        MP-40 "Schmeisser"
+                    </h3>
+                    <p class="text-xs text-gray-600 line-clamp-2">
+                        Трофейный пистолет-пулемет. Символ немецкой пехоты.
+                    </p>
+                </div>
+            </a>
+
+            <!-- КАРТОЧКА 2 (Железный Крест) -->
+            <a href="#" class="exhibit-card group block flex flex-col h-full relative">
+                <div class="relative aspect-[4/3] overflow-hidden bg-[#050505] border-b border-gray-900">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Eisernes_Kreuz_1914.jpg/800px-Eisernes_Kreuz_1914.jpg" 
+                         alt="Железный Крест" class="exhibit-img w-full h-full object-cover">
+                    <div class="absolute top-0 right-0 p-3">
+                        <span class="px-2 py-1 bg-black border border-gray-800 text-gray-500 text-[9px] font-bold font-mono">
+                            DE-1939
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-end relative">
+                    <p class="exhibit-type text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Награды</p>
+                    <h3 class="exhibit-name text-lg font-bold text-gray-300 leading-tight mb-2 group-hover:text-white transition-colors">
+                        Железный Крест (EK I)
+                    </h3>
+                    <p class="text-xs text-gray-600 line-clamp-2">
+                        Изъят при пленении офицерского состава.
+                    </p>
+                </div>
+            </a>
+
+            <!-- КАРТОЧКА 3 (Каска) -->
+            <a href="#" class="exhibit-card group block flex flex-col h-full relative">
+                <div class="relative aspect-[4/3] overflow-hidden bg-[#050505] border-b border-gray-900">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Stahlhelm_M35.jpg/1200px-Stahlhelm_M35.jpg" 
+                         alt="Stahlhelm" class="exhibit-img w-full h-full object-cover">
+                    <div class="absolute top-0 right-0 p-3">
+                        <span class="px-2 py-1 bg-black border border-gray-800 text-gray-500 text-[9px] font-bold font-mono">
+                            DE-1935
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-end relative">
+                    <p class="exhibit-type text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Снаряжение</p>
+                    <h3 class="exhibit-name text-lg font-bold text-gray-300 leading-tight mb-2 group-hover:text-white transition-colors">
+                        Стальной шлем M35
+                    </h3>
+                    <p class="text-xs text-gray-600 line-clamp-2">
+                        Стандартный шлем Вермахта со следами боевых повреждений.
+                    </p>
+                </div>
+            </a>
+
+        </div>
+
+        <div id="nothingFound" class="hidden text-center py-20">
+            <p class="text-gray-700 uppercase tracking-widest text-sm font-bold">Трофеи не найдены</p>
+        </div>
+    </main>
+
+    <!-- Подвал (Без триколора) -->
+    <footer class="mt-auto bg-[#050505] relative z-20 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+             <div class="flex items-center justify-center gap-4 opacity-20 mb-4">
+                <div class="w-12 h-px bg-gray-500"></div>
+                <div class="w-2 h-2 bg-gray-800 transform rotate-45"></div>
+                <div class="w-12 h-px bg-gray-500"></div>
+            </div>
+            <p class="text-[10px] text-gray-700 uppercase tracking-wider">
+                © 2026. Музей Боевой Славы
+            </p>
+        </div>
+    </footer>
+
+    <!-- Скрипт поиска -->
+    <script>
+        function filterExhibits() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('exhibit-card');
+            let foundCount = 0;
+            let totalCards = cards.length;
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].querySelector('.exhibit-name').innerText.toLowerCase();
+                let type = cards[i].querySelector('.exhibit-type').innerText.toLowerCase();
+                
+                if (name.includes(input) || type.includes(input)) {
+                    cards[i].style.display = ""; 
+                    foundCount++;
+                } else {
+                    cards[i].style.display = "none"; 
+                }
+            }
+
+            const nothingFound = document.getElementById('nothingFound');
+            const grid = document.getElementById('grid');
+            
+            if (foundCount === 0 && totalCards > 0) {
+                nothingFound.style.display = "block";
+                grid.style.display = "none";
+            } else {
+                nothingFound.style.display = "none";
+                grid.style.display = "grid";
+            }
+            
+            document.getElementById('recordsCount').innerText = `Найдено трофеев: ${foundCount}`;
+        }
+        
+        window.onload = function() {
+            document.getElementById('recordsCount').innerText = `Всего трофеев: ${document.getElementsByClassName('exhibit-card').length}`;
+        };
+    </script>
+</body>
+</html>
