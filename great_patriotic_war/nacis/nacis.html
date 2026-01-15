@@ -86,25 +86,18 @@
             color: white;
         }
 
-        /* Карточка трофея */
+        /* Карточка трофея (Заглушка) */
         .exhibit-card {
             background: #080808;
             border: 1px solid #1A1A1A;
             transition: all 0.3s ease;
+            cursor: not-allowed;
+            opacity: 0.7;
         }
         .exhibit-card:hover {
-            border-color: #4A5568;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            border-color: #333;
             background: #0D0D0D;
-        }
-        
-        .exhibit-img {
-            filter: grayscale(100%) contrast(110%) brightness(0.7);
-            transition: all 0.5s ease;
-        }
-        .exhibit-card:hover .exhibit-img {
-            filter: grayscale(0%) contrast(100%) brightness(0.9); /* Чуть темнее обычного даже при наведении */
+            opacity: 1;
         }
     </style>
 </head>
@@ -116,25 +109,24 @@
     <!-- Фон: Осколки -->
     <div class="shards-bg">
         <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-            <!-- Острые, ломаные фигуры -->
             <path class="shard-path" d="M-100,800 L400,200 L600,600 Z" />
             <path class="shard-path" d="M1500,-100 L1200,400 L1800,300 Z" />
             <path class="shard-path" d="M800,1200 L1000,800 L1400,1400 Z" />
             <path class="shard-path" d="M200,0 L0,300 L-200,0 Z" />
-            <!-- Тонкие линии-трещины -->
             <line x1="0" y1="1080" x2="600" y2="400" stroke="rgba(255,255,255,0.03)" stroke-width="2" />
             <line x1="1920" y1="0" x2="1300" y2="500" stroke="rgba(255,255,255,0.03)" stroke-width="2" />
         </svg>
     </div>
 
-    <!-- Полоса триколора (На этой странице ТОЛЬКО вверху, как часть UI сайта, но не контента) -->
+    <!-- Полоса триколора -->
     <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-50"></div>
 
     <!-- Навигация -->
     <nav class="fixed w-full z-40 py-6 px-4 md:px-8">
-        <a href="ВОВ.html" class="inline-flex items-center gap-3 group bg-black/80 backdrop-blur-md px-5 py-2.5 rounded-none border border-gray-800 hover:border-gray-600 transition-all">
+        <!-- Кнопка изменена: путь на ../great_patriotic_war.html и rounded-full -->
+        <a href="../great_patriotic_war.html" class="inline-flex items-center gap-3 group bg-black/80 backdrop-blur-md px-5 py-2.5 rounded-full border border-gray-800 hover:border-gray-600 transition-all">
             <svg class="w-4 h-4 text-gray-600 group-hover:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">К разделам ВОВ</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-300 transition-colors">Назад</span>
         </a>
     </nav>
 
@@ -152,9 +144,9 @@
 
         <!-- Поиск -->
         <div class="max-w-xl mx-auto relative group">
-            <input type="text" id="searchInput" onkeyup="filterExhibits()" placeholder="Поиск трофеев..." 
-                   class="search-input w-full py-4 px-6 text-sm md:text-base font-mono uppercase tracking-wider">
-            <div class="absolute right-5 top-4 text-gray-700 group-focus-within:text-gray-500 transition-colors">
+            <input type="text" id="searchInput" placeholder="Поиск трофеев..." disabled
+                   class="search-input w-full py-4 px-6 text-sm md:text-base font-mono uppercase tracking-wider cursor-not-allowed opacity-50">
+            <div class="absolute right-5 top-4 text-gray-700">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
         </div>
@@ -163,85 +155,33 @@
     <!-- Сетка экспонатов -->
     <main class="flex-grow px-4 pb-24 max-w-7xl mx-auto w-full relative z-10">
         
-        <div class="text-right text-xs text-gray-700 mb-4 font-mono uppercase" id="recordsCount"></div>
+        <div class="text-right text-xs text-gray-700 mb-4 font-mono uppercase">Всего трофеев: 0</div>
 
         <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
 
-            <!-- КАРТОЧКА 1 (MP-40) -->
-            <a href="экспонат_новый.html" class="exhibit-card group block flex flex-col h-full relative">
-                <div class="relative aspect-[4/3] overflow-hidden bg-[#050505] border-b border-gray-900">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/MP40.jpg/1200px-MP40.jpg" 
-                         alt="MP-40" class="exhibit-img w-full h-full object-cover">
-                    <!-- Бейдж -->
-                    <div class="absolute top-0 right-0 p-3">
-                        <span class="px-2 py-1 bg-black border border-gray-800 text-gray-500 text-[9px] font-bold font-mono">
-                            DE-1940
-                        </span>
+            <!-- ЗАГЛУШКА -->
+            <div class="exhibit-card rounded-2xl overflow-hidden group block flex flex-col h-full relative border border-dashed border-gray-800">
+                <div class="relative aspect-[4/3] bg-[#050505] flex items-center justify-center">
+                    <!-- Иконка замка/заглушки -->
+                    <div class="text-center opacity-30">
+                        <svg class="w-16 h-16 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        <span class="text-xs uppercase font-mono tracking-widest">Locked</span>
                     </div>
                 </div>
                 <div class="p-6 flex-grow flex flex-col justify-end relative">
-                    <p class="exhibit-type text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Стрелковое оружие</p>
-                    <h3 class="exhibit-name text-lg font-bold text-gray-300 leading-tight mb-2 group-hover:text-white transition-colors">
-                        MP-40 "Schmeisser"
+                    <h3 class="text-lg font-bold text-gray-500 leading-tight mb-2 text-center">
+                        Тут будет артефакт
                     </h3>
-                    <p class="text-xs text-gray-600 line-clamp-2">
-                        Трофейный пистолет-пулемет. Символ немецкой пехоты.
+                    <p class="text-xs text-gray-700 text-center">
+                        Раздел находится в стадии наполнения. Экспонаты готовятся к публикации.
                     </p>
                 </div>
-            </a>
+            </div>
 
-            <!-- КАРТОЧКА 2 (Железный Крест) -->
-            <a href="#" class="exhibit-card group block flex flex-col h-full relative">
-                <div class="relative aspect-[4/3] overflow-hidden bg-[#050505] border-b border-gray-900">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Eisernes_Kreuz_1914.jpg/800px-Eisernes_Kreuz_1914.jpg" 
-                         alt="Железный Крест" class="exhibit-img w-full h-full object-cover">
-                    <div class="absolute top-0 right-0 p-3">
-                        <span class="px-2 py-1 bg-black border border-gray-800 text-gray-500 text-[9px] font-bold font-mono">
-                            DE-1939
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-grow flex flex-col justify-end relative">
-                    <p class="exhibit-type text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Награды</p>
-                    <h3 class="exhibit-name text-lg font-bold text-gray-300 leading-tight mb-2 group-hover:text-white transition-colors">
-                        Железный Крест (EK I)
-                    </h3>
-                    <p class="text-xs text-gray-600 line-clamp-2">
-                        Изъят при пленении офицерского состава.
-                    </p>
-                </div>
-            </a>
-
-            <!-- КАРТОЧКА 3 (Каска) -->
-            <a href="#" class="exhibit-card group block flex flex-col h-full relative">
-                <div class="relative aspect-[4/3] overflow-hidden bg-[#050505] border-b border-gray-900">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Stahlhelm_M35.jpg/1200px-Stahlhelm_M35.jpg" 
-                         alt="Stahlhelm" class="exhibit-img w-full h-full object-cover">
-                    <div class="absolute top-0 right-0 p-3">
-                        <span class="px-2 py-1 bg-black border border-gray-800 text-gray-500 text-[9px] font-bold font-mono">
-                            DE-1935
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6 flex-grow flex flex-col justify-end relative">
-                    <p class="exhibit-type text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Снаряжение</p>
-                    <h3 class="exhibit-name text-lg font-bold text-gray-300 leading-tight mb-2 group-hover:text-white transition-colors">
-                        Стальной шлем M35
-                    </h3>
-                    <p class="text-xs text-gray-600 line-clamp-2">
-                        Стандартный шлем Вермахта со следами боевых повреждений.
-                    </p>
-                </div>
-            </a>
-
-        </div>
-
-        <div id="nothingFound" class="hidden text-center py-20">
-            <p class="text-gray-700 uppercase tracking-widest text-sm font-bold">Трофеи не найдены</p>
         </div>
     </main>
 
-    <!-- Подвал (Без триколора) -->
+    <!-- Подвал -->
     <footer class="mt-auto bg-[#050505] relative z-20 border-t border-gray-900">
         <div class="max-w-7xl mx-auto px-4 py-8 text-center">
              <div class="flex items-center justify-center gap-4 opacity-20 mb-4">
@@ -255,43 +195,5 @@
         </div>
     </footer>
 
-    <!-- Скрипт поиска -->
-    <script>
-        function filterExhibits() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('exhibit-card');
-            let foundCount = 0;
-            let totalCards = cards.length;
-
-            for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].querySelector('.exhibit-name').innerText.toLowerCase();
-                let type = cards[i].querySelector('.exhibit-type').innerText.toLowerCase();
-                
-                if (name.includes(input) || type.includes(input)) {
-                    cards[i].style.display = ""; 
-                    foundCount++;
-                } else {
-                    cards[i].style.display = "none"; 
-                }
-            }
-
-            const nothingFound = document.getElementById('nothingFound');
-            const grid = document.getElementById('grid');
-            
-            if (foundCount === 0 && totalCards > 0) {
-                nothingFound.style.display = "block";
-                grid.style.display = "none";
-            } else {
-                nothingFound.style.display = "none";
-                grid.style.display = "grid";
-            }
-            
-            document.getElementById('recordsCount').innerText = `Найдено трофеев: ${foundCount}`;
-        }
-        
-        window.onload = function() {
-            document.getElementById('recordsCount').innerText = `Всего трофеев: ${document.getElementsByClassName('exhibit-card').length}`;
-        };
-    </script>
 </body>
 </html>
