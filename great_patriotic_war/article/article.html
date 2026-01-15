@@ -1,1 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой путь | 3-я Гвардейская Бригада</title>
+    
+    <!-- Шрифт Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Конфигурация -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'flag-blue': '#0039A6',
+                        'flag-red': '#D52B1E',
+                        'soviet-gold': '#FFD700',
+                        'dark-bg': '#0F1115',
+                        'card-bg': '#181A20',
+                    },
+                    backgroundImage: {
+                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F0F2F5;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(24, 26, 32, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Ambient Light */
+        .ambient-light {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Типографика статьи */
+        .article-content h2 {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: white;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: #D1D5DB;
+            font-size: 1.125rem;
+        }
+        .article-content strong {
+            color: #FFD700;
+        }
+        .quote-box {
+            border-left: 4px solid #D52B1E;
+            background: rgba(213, 43, 30, 0.05);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        /* Анимация появления */
+        .fade-in {
+            animation: fadeIn 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Верхняя полоса -->
+    <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-50"></div>
+
+    <!-- Навигация -->
+    <nav class="w-full z-40 py-6 border-b border-white/5 bg-dark-bg/90 backdrop-blur-md sticky top-0">
+        <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <!-- Кнопка НАЗАД (в меню ВОВ) -->
+                <a href="../great_patriotic_war.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group">
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </div>
+                    <span class="text-sm font-semibold tracking-wide uppercase hidden sm:block">Назад</span>
+                </a>
+
+                <!-- Кнопка ГЛАВНАЯ (в корень) -->
+                <a href="../../index.html" class="flex items-center gap-2 text-gray-400 hover:text-soviet-gold transition-colors group">
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-soviet-gold/50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <span class="text-sm font-semibold tracking-wide uppercase hidden sm:block">Главная</span>
+                </a>
+            </div>
+            
+            <div class="text-xs font-bold uppercase tracking-widest text-gray-500">
+                История Бригады
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="flex-grow relative">
+        <!-- Фоновые пятна -->
+        <div class="ambient-light top-0 left-0 w-[600px] h-[600px] bg-flag-red/10"></div>
+        <div class="ambient-light bottom-0 right-0 w-[500px] h-[500px] bg-flag-blue/10"></div>
+
+        <!-- Заголовок статьи -->
+        <header class="pt-20 pb-12 px-4 text-center relative z-10 fade-in">
+            <div class="inline-block mb-4 px-3 py-1 rounded border border-soviet-gold/30 bg-soviet-gold/10 backdrop-blur-md">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-soviet-gold">Наследие</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight max-w-4xl mx-auto">
+                ОТ ВОЛГИ ДО ШПРЕЕ: <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">ПУТЬ К ПОБЕДЕ</span>
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg italic">
+                История 5-го отдельного гвардейского мотоциклетного полка — прародителя нашей бригады.
+            </p>
+        </header>
+
+        <!-- Тело статьи -->
+        <article class="max-w-3xl mx-auto px-4 pb-24 relative z-10 article-content fade-in" style="animation-delay: 0.2s;">
+            
+            <div class="glass-panel p-8 md:p-12 rounded-3xl">
+                
+                <p>
+                    Наша история началась не в кабинетах штабов, а в огне Сталинградской битвы. Хотя сама 3-я отдельная гвардейская бригада специального назначения была официально сформирована в 1966 году в ГДР, мы по праву считаем себя наследниками славы и традиций <strong>5-го отдельного гвардейского мотоциклетного полка</strong>. Именно его боевые знамена, его почетные наименования и ордена мы с гордостью несем сегодня.
+                </p>
+
+                <h2>Рождение в огне</h2>
+                <p>
+                    Осень 1942 года. Враг рвется к Волге. В этих тяжелейших условиях формируется наша часть. С первых дней мы стали "глазами и ушами" фронта. Мобильные группы на мотоциклах М-72 и легких броневиках просачивались сквозь линию фронта, наводя панику в тылах немцев, уничтожая штабы и перерезая коммуникации.
+                </p>
+                <p>
+                    За мужество и героизм, проявленные в Сталинградской битве, полк получил почетное звание <strong>"Гвардейский"</strong>. Это была первая кровь и первая великая слава.
+                </p>
+
+                <div class="quote-box">
+                    <p class="mb-0 text-white">
+                        «Разведка — это не просто риск. Это холодный расчет, помноженный на бесстрашие. Мы шли туда, откуда другие не возвращались, чтобы армия могла идти вперед.»
+                    </p>
+                </div>
+
+                <h2>На Берлин!</h2>
+                <p>
+                    Мы гнали врага прочь с родной земли. Курская дуга, форсирование Днепра, освобождение Украины и Белоруссии. Но особенно яркой страницей в нашей истории стала Висло-Одерская операция.
+                </p>
+                <p>
+                    В январе 1945 года наши разведчики одними из первых ворвались в Варшаву. За стремительные действия и освобождение столицы Польши полку было присвоено почетное наименование <strong>"Варшавский"</strong>.
+                </p>
+                <p>
+                    Но цель была впереди — логово зверя. Берлин. Весной 45-го мы уже действовали в пригородах немецкой столицы. Разведдозоры полка вскрывали систему обороны города, обеспечивая прорыв танковых армий. За штурм Берлина полк получил свое второе почетное наименование — <strong>"Берлинский"</strong>.
+                </p>
+
+                <h2>Орденоносная слава</h2>
+                <p>
+                    Родина высоко оценила подвиг наших предков. На боевом знамени части сияют ордена <strong>Суворова, Кутузова и Александра Невского</strong>. Каждая из этих наград оплачена кровью и потом разведчиков, которые ставили выполнение задачи выше собственной жизни.
+                </p>
+
+                <h2>Герои среди нас</h2>
+                <p>
+                    Говоря о пути бригады, нельзя не вспомнить тех, кто закладывал фундамент спецназа ГРУ. Одним из отцов-основателей и первым командиром бригады (уже в послевоенное время) был легендарный полковник <strong>Гришаков</strong>. Но дух части ковали герои Великой Отечественной — такие как гвардии полковник <strong>Виктор Леонов</strong>, дважды Герой Советского Союза, легенда морского спецназа, чей опыт дерзких рейдов изучался и внедрялся в подготовку наших групп.
+                </p>
+                <p>
+                    Мы помним каждого. От механика-водителя мотоцикла до командира полка. Их опыт — это наш устав. Их подвиг — наша честь. Сегодня 3-я гвардейская бригада продолжает их дело, оставаясь элитой Вооруженных Сил и гарантом безопасности нашей Родины.
+                </p>
+                
+                <div class="mt-12 pt-8 border-t border-white/10 text-center">
+                    <span class="text-soviet-gold font-bold uppercase tracking-widest text-sm">Никто, кроме нас</span>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Футер -->
+    <footer class="border-t border-white/10 bg-[#0A0C10] py-12 relative z-20">
+        <div class="max-w-4xl mx-auto px-4 text-center opacity-40 text-xs">
+            <p class="mb-2">© 2026 Музей Боевой Славы 3-й ОБрСпН</p>
+            <p>Вечная память героям.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
 
