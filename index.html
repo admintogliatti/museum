@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей Боевой Славы | 3-я Бригада</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'flag-white': '#FFFFFF',
+                        'flag-blue': '#0039A6',
+                        'flag-red': '#D52B1E',
+                        'gold-hero': '#D4AF37',
+                        'dark-bg': '#0F1115',
+                        'card-bg': '#181A20',
+                    },
+                    backgroundImage: {
+                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F0F2F5;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Light */
+        .ambient-light {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 57, 166, 0.15) 0%, rgba(213, 43, 30, 0.05) 40%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(24, 26, 32, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Анимации */
+        .fade-up {
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F1115; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-flag-blue selection:text-white">
+
+    <!-- Верхняя полоса триколора -->
+    <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-[60]"></div>
+
+    <!-- HERO SECTION -->
+    <section id="main" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-10 pb-20">
+        <div class="ambient-light top-1/4 left-1/4 bg-flag-blue/20"></div>
+        <div class="ambient-light bottom-0 right-0 bg-flag-red/10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Левый слот: Герб РФ (Картинка) -->
+            <div class="hidden lg:flex col-span-3 flex-col items-center justify-center fade-up" style="animation-delay: 0.2s;">
+                <!-- Убедись, что файл arms.png лежит в папке с html -->
+                <img src="arms.png" alt="Герб РФ" class="w-full max-w-[200px] h-auto object-contain drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500">
+            </div>
+
+            <!-- Центральный контент -->
+            <div class="col-span-1 lg:col-span-6 text-center fade-up" style="animation-delay: 0.4s;">
+                <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-flag-white via-gray-300 to-gray-400 font-bold text-xs uppercase tracking-[0.2em]">
+                        Музей 3-й Бригады Спецназа
+                    </span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                    ИСТОРИЯ <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">ПОДВИГА</span>
+                </h1>
+                
+                <p class="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto font-medium">
+                    Мы храним память о каждом шаге нашей бригады. От героев Великой Отечественной до бойцов современности.
+                </p>
+
+                <div class="flex justify-center">
+                    <a href="#conflicts" class="animate-bounce p-3 rounded-full border border-white/10 bg-white/5 text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Правый слот: Эмблема Бригады (Картинка) -->
+            <div class="hidden lg:flex col-span-3 flex-col items-center justify-center fade-up" style="animation-delay: 0.6s;">
+                <!-- Убедись, что файл emblem.png лежит в папке с html -->
+                <img src="emblem.png" alt="Эмблема Бригады" class="w-full max-w-[200px] h-auto object-contain drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- РАЗДЕЛ 1: ВОЕННЫЕ КОНФЛИКТЫ -->
+    <section id="conflicts" class="py-16 relative border-t border-white/5 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Заголовок с полосой -->
+            <div class="mb-12 fade-up">
+                <h2 class="text-3xl font-bold mb-3 uppercase tracking-wide">Боевой путь</h2>
+                <div class="h-1.5 w-24 bg-tricolor-gradient rounded-full"></div>
+                <p class="mt-4 text-gray-400 text-sm max-w-xl">Хронология участия бригады в вооруженных конфликтах и миротворческих операциях.</p>
+            </div>
+            
+            <!-- Сетка конфликтов (Пока один, потом добавишь другие) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Карточка ВОВ -->
+                <a href="ВОВ.html" class="glass-panel p-8 rounded-3xl group cursor-pointer relative overflow-hidden flex flex-col min-h-[320px] fade-up" style="animation-delay: 0.2s;">
+                    <!-- Акцент сверху -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-flag-red opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="flex justify-between items-start mb-auto">
+                        <div class="w-14 h-14 bg-flag-red/10 rounded-2xl flex items-center justify-center text-flag-red group-hover:bg-flag-red group-hover:text-white transition-all duration-300">
+                            <!-- Иконка звезды -->
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z" /></svg>
+                        </div>
+                        <span class="text-gray-500 font-mono text-xs border border-white/10 px-2 py-1 rounded">1941-1945</span>
+                    </div>
+
+                    <div class="relative z-10 mt-8">
+                        <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-flag-red transition-colors">Великая Отечественная</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">Истоки формирования воинских традиций. Экспонаты с полей сражений и история Победы.</p>
+                        
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-flag-red opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                            <span>Перейти к разделу</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Сюда потом добавишь Афганистан, Чечню, Сирию, СВО -->
+                <!-- Сейчас место пустое, сетка сама выровняется -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- РАЗДЕЛ 2: ЛИЧНЫЙ СОСТАВ (Герои и Погибшие) -->
+    <section class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Заголовок с полосой -->
+            <div class="mb-12 fade-up">
+                <h2 class="text-3xl font-bold mb-3 uppercase tracking-wide">Личный состав</h2>
+                <div class="h-1.5 w-24 bg-tricolor-gradient rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Герои России и СССР -->
+                <a href="#" class="glass-panel p-8 rounded-3xl group cursor-pointer relative overflow-hidden fade-up" style="animation-delay: 0.3s;">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gold-hero opacity-60"></div>
+                    <div class="absolute -right-10 -top-10 text-gold-hero/5 group-hover:text-gold-hero/10 transition-colors">
+                        <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z" /></svg>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-gold-hero/20 rounded-xl flex items-center justify-center mb-6 text-gold-hero">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-gold-hero transition-colors">Герои России и СССР</h3>
+                        <p class="text-sm text-gray-400 max-w-sm">Золотые страницы истории бригады. Биографии и подвиги удостоенных высших наград Родины.</p>
+                    </div>
+                </a>
+
+                <!-- Погибшие бойцы -->
+                <a href="погибший.html" class="glass-panel p-8 rounded-3xl group cursor-pointer relative overflow-hidden fade-up" style="animation-delay: 0.4s;">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gray-500 opacity-60"></div>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-12 h-12 bg-gray-700/50 rounded-xl flex items-center justify-center mb-6 text-gray-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">Погибшие бойцы</h3>
+                        <p class="text-sm text-gray-400 max-w-sm">Вечная память павшим при исполнении воинского долга. Их имена навсегда в списках части.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- РАЗДЕЛ 3: МЕДИА (Подкасты) -->
+    <section class="py-16 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4">
+             <!-- Заголовок с полосой -->
+             <div class="mb-8 fade-up">
+                <h2 class="text-3xl font-bold mb-3 uppercase tracking-wide">Медиа</h2>
+                <div class="h-1.5 w-24 bg-tricolor-gradient rounded-full"></div>
+            </div>
+
+            <a href="#" class="block glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden group hover:bg-white/5 transition-all fade-up" style="animation-delay: 0.5s;">
+                <!-- Фоновый градиент -->
+                <div class="absolute inset-0 bg-gradient-to-r from-flag-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                    <!-- Иконка микрофона -->
+                    <div class="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-flag-blue/50 transition-all duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                    </div>
+
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-3xl font-bold mb-2">Подкасты и Интервью</h3>
+                        <p class="text-gray-400 max-w-2xl">Живая история из первых уст. Разговоры с ветеранами, командирами и бойцами бригады о службе, долге и жизни.</p>
+                    </div>
+
+                    <div class="flex-shrink-0">
+                        <span class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-dark-bg font-bold text-sm uppercase tracking-wider hover:bg-gray-200 transition-colors">
+                            Слушать
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Футер (Минимализм) -->
+    <footer class="border-t border-white/10 bg-[#0A0C10] py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h4 class="font-bold text-white tracking-widest uppercase text-sm mb-1">Музей Боевой Славы</h4>
+                <p class="text-xs text-gray-600">© 2026. Оцифровано на энтузиазме.</p>
+            </div>
+            
+            <div class="flex items-center gap-2 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="w-2 h-2 rounded-full bg-white"></div>
+                <div class="w-2 h-2 rounded-full bg-flag-blue"></div>
+                <div class="w-2 h-2 rounded-full bg-flag-red"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach((el) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
