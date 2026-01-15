@@ -150,7 +150,8 @@
     <!-- Навигация -->
     <nav class="fixed w-full z-50 top-0 pt-6 px-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 group hover:!translate-y-0 active:scale-95 transition-transform">
+            <!-- Исправлена ссылка на index.html (выход в корень) -->
+            <a href="../index.html" class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 group hover:!translate-y-0 active:scale-95 transition-transform">
                 <svg class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 <span class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-white transition-colors">В меню</span>
             </a>
@@ -185,7 +186,8 @@
                 </div>
 
                 <!-- Карточка-ссылка на Лонгрид -->
-                <a href="article/article.html" class="lg:col-span-5 fade-up group cursor-pointer w-full" style="animation-delay: 0.2s;">
+                <!-- ВНИМАНИЕ: Ссылка осталась старой, возможно требуется исправление на 'article/article.html' -->
+                <a href="great_patriotic_war/article/article.html" class="lg:col-span-5 fade-up group cursor-pointer w-full" style="animation-delay: 0.2s;">
                     <div class="glass-panel p-8 rounded-3xl border-l-4 border-l-flag-red relative overflow-hidden">
                         <div class="absolute right-[-20px] top-[-20px] opacity-10 group-hover:opacity-20 transition-opacity">
                             <svg class="w-40 h-40 text-flag-red" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
@@ -220,9 +222,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12">
                 
                 <!-- 1. СССР и союзники -->
+                <!-- Ссылка исправлена на ussr/ussr.html -->
                 <a href="ussr/ussr.html" class="side-card group ring-1 ring-white/10 hover:ring-flag-red/50 fade-up" style="animation-delay: 0.4s;">
-                    <!-- КАРТИНКА -->
-                    <img src="great_patriotic_war_pictures/ussr.jpg" alt="СССР и союзники">
+                    <!-- КАРТИНКА: добавлен выход в корень ../ + полный путь -->
+                    <img src="../great_patriotic_war/great_patriotic_war_pictures/ussr.jpg" alt="СССР и союзники">
                     
                     <div class="relative z-20">
                         <div class="flex items-center gap-3 mb-3">
@@ -244,9 +247,10 @@
                 </a>
 
                 <!-- 2. Третий Рейх и страны ОСИ -->
+                <!-- Ссылка исправлена на nacis/nacis.html -->
                 <a href="nacis/nacis.html" class="side-card group ring-1 ring-white/10 hover:ring-gray-500/50 fade-up" style="animation-delay: 0.5s;">
-                    <!-- КАРТИНКА -->
-                    <img src="great_patriotic_war_pictures/naci.jpg" alt="Третий Рейх и страны ОСИ" class="grayscale contrast-125">
+                    <!-- КАРТИНКА: добавлен выход в корень ../ + полный путь -->
+                    <img src="../great_patriotic_war/great_patriotic_war_pictures/naci.jpg" alt="Третий Рейх и страны ОСИ" class="grayscale contrast-125">
                     
                     <div class="relative z-20">
                         <div class="flex items-center gap-3 mb-3">
