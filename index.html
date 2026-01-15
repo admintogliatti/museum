@@ -100,14 +100,19 @@
         
         <div class="max-w-7xl mx-auto px-4 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <!-- Левый слот: Герб РФ (Картинка) -->
+            <!-- Левый слот: Герб РФ (Картинка для ПК) -->
             <div class="hidden lg:flex col-span-3 flex-col items-center justify-center fade-up" style="animation-delay: 0.2s;">
-                <!-- Убедись, что файл arms.png лежит в папке с html -->
                 <img src="index_pictures/arms.png" alt="Герб РФ" class="w-full max-w-[200px] h-auto object-contain drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500">
             </div>
 
             <!-- Центральный контент -->
             <div class="col-span-1 lg:col-span-6 text-center fade-up" style="animation-delay: 0.4s;">
+                
+                <!-- Эмблема Бригады (Только для мобильных) -->
+                <div class="lg:hidden mb-8 flex justify-center">
+                    <img src="index_pictures/emblem.png" alt="Эмблема Бригады" class="w-32 h-32 object-contain drop-shadow-2xl opacity-90">
+                </div>
+
                 <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-flag-white via-gray-300 to-gray-400 font-bold text-xs uppercase tracking-[0.2em]">
                         Музей 3-й Бригады Спецназа
@@ -130,9 +135,8 @@
                 </div>
             </div>
 
-            <!-- Правый слот: Эмблема Бригады (Картинка) -->
+            <!-- Правый слот: Эмблема Бригады (Картинка для ПК) -->
             <div class="hidden lg:flex col-span-3 flex-col items-center justify-center fade-up" style="animation-delay: 0.6s;">
-                <!-- Убедись, что файл emblem.png лежит в папке с html -->
                 <img src="index_pictures/emblem.png" alt="Эмблема Бригады" class="w-full max-w-[200px] h-auto object-contain drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500">
             </div>
         </div>
