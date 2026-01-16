@@ -1,183 +1,475 @@
 <!DOCTYPE html>
+
 <html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Герои | Музей 3-й Бригады</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        'flag-white': '#FFFFFF',
-                        'flag-blue': '#0039A6',
-                        'flag-red': '#D52B1E',
-                        'gold-hero': '#D4AF37',
-                        'dark-bg': '#0F1115',
-                        'card-bg': '#181A20',
-                    },
-                    backgroundImage: {
-                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
-                    }
+    <title>Герои Бригады | Золотой Фонд</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Config -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Montserrat', 'sans-serif'],
+                },
+                colors: {
+                    'hero-gold': '#D4AF37',       
+                    'dark-bg': '#0F1115',
+                    'card-bg': '#14161B',
+                },
+                backgroundImage: {
+                    'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
                 }
             }
         }
-    </script>
+    }
+</script>
 
-    <style>
-        body {
-            background-color: #0F1115;
-            color: #F0F2F5;
-            overflow-x: hidden;
-        }
+<style>
+    body {
+        background-color: #0F1115;
+        color: #F0F2F5;
+        overflow-x: hidden;
+    }
 
-        .ambient-light {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            pointer-events: none;
-        }
+    /* Ambient Light */
+    .ambient-gold {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+    }
 
-        .glass-panel {
-            background: rgba(24, 26, 32, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* Карточка Героя */
+    .hero-card {
+        background: #14161B;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
 
-        .glass-panel:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 175, 55, 0.3); /* Gold border on hover */
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
+    .hero-card:hover {
+        transform: translateY(-7px);
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.1);
+    }
 
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .hero-img {
+        transition: transform 0.7s ease, filter 0.5s ease;
+        filter: grayscale(100%) contrast(110%);
+    }
+    
+    .hero-card:hover .hero-img {
+        transform: scale(1.05);
+        filter: grayscale(0%) contrast(100%);
+    }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0F1115; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    </style>
+    /* Траурная лента (CSS) */
+    .mourning-ribbon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        z-index: 20;
+        pointer-events: none;
+    }
+    .mourning-ribbon::before {
+        content: '';
+        position: absolute;
+        bottom: 15px;
+        right: -25px;
+        width: 100px;
+        height: 20px;
+        background: #000;
+        transform: rotate(-45deg);
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Золотые частицы */
+    .ember {
+        position: fixed;
+        bottom: -20px;
+        background: #D4AF37;
+        border-radius: 50%;
+        opacity: 0;
+        animation: rise linear infinite;
+        box-shadow: 0 0 5px #FFD700;
+        pointer-events: none;
+        z-index: 1;
+    }
+    @keyframes rise {
+        0% { bottom: -20px; opacity: 0; transform: translateX(0); }
+        50% { opacity: 0.4; transform: translateX(20px); }
+        100% { bottom: 100vh; opacity: 0; transform: translateX(40px); }
+    }
+
+    /* Анимация появления */
+    .fade-up {
+        animation: fadeUp 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+
 </head>
-<body class="antialiased selection:bg-gold-hero selection:text-black">
+<body class="antialiased font-sans min-h-screen flex flex-col">
 
-    <!-- Верхняя полоса -->
-    <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-[60]"></div>
+<!-- Золотые искры -->
+<div id="embers-container"></div>
 
-    <!-- Навигация -->
-    <nav class="fixed top-6 left-6 z-50">
-        <a href="../index.html" class="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-gray-300 hover:text-white hover:bg-white/10 transition-all group">
-            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            <span class="text-sm font-medium uppercase tracking-wider">На Главную</span>
+<!-- Фоновый свет -->
+<div class="ambient-gold"></div>
+
+<!-- Верхняя полоса -->
+<div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-[60]"></div>
+
+<!-- Навигация -->
+<nav class="fixed w-full z-50 top-0 pt-6 px-4">
+    <div class="max-w-7xl mx-auto">
+        <a href="../index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 hover:border-hero-gold/50 transition-colors group">
+            <svg class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span class="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-white transition-colors">назад</span>
         </a>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Заголовок -->
-    <section class="pt-32 pb-12 relative">
-        <div class="ambient-light top-0 left-1/4"></div>
-        <div class="max-w-7xl mx-auto px-4 text-center fade-up">
-            <h1 class="text-4xl md:text-6xl font-black mb-4 uppercase tracking-wide">
-                Герои <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-hero to-yellow-200">Бригады</span>
-            </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto">
-                Золотые страницы истории. Люди, чьи подвиги навсегда вписаны в летопись воинской славы.
-            </p>
+<!-- Заголовок страницы -->
+<header class="pt-32 pb-16 px-4 text-center relative z-10">
+    <div class="inline-flex items-center gap-3 mb-6 px-4 py-1 rounded border border-hero-gold/20 bg-hero-gold/5 backdrop-blur-sm fade-up">
+        <svg class="w-4 h-4 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-hero-gold">Высшая награда Родины</span>
+        <svg class="w-4 h-4 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+    </div>
+    
+    <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tight leading-none text-white drop-shadow-2xl fade-up" style="animation-delay: 0.1s;">
+        Герои <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-hero-gold to-white">Бригады</span>
+    </h1>
+    
+    <div class="flex flex-col items-center justify-center gap-3 fade-up" style="animation-delay: 0.2s;">
+        <div class="h-px w-24 bg-gradient-to-r from-transparent via-hero-gold to-transparent opacity-70"></div>
+        <p class="text-gray-400 text-sm md:text-base font-medium uppercase tracking-[0.15em] max-w-2xl leading-relaxed">
+            Подвиги, ставшие историей.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 pb-24 w-full relative z-10 space-y-20">
+
+    <!-- ==========================================
+         РАЗДЕЛ 1: ВЕЛИКАЯ ОТЕЧЕСТВЕННАЯ (1 чел)
+         ========================================== -->
+    <section>
+        <div class="flex items-end gap-4 mb-8 border-b border-white/10 pb-4 fade-up" style="animation-delay: 0.3s;">
+            <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-widest text-white">Великая Отечественная</h2>
+            <span class="text-gray-500 font-mono text-sm mb-1 pb-1">1941 — 1945</span>
         </div>
-    </section>
 
-    <!-- Сетка героев -->
-    <section class="pb-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- ГЕРОЙ СССР: ДИКУН Г.В. -->
+            <a href="dicun/dicun.html" class="hero-card rounded-2xl group aspect-[3/4] fade-up" style="animation-delay: 0.4s;">
+                <!-- Фото -->
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="dicun/dicun-pictures/dicun-photo.jpg" alt="Дикун Георгий Васильевич" class="hero-img w-full h-full object-cover">
+                </div>
                 
-                <!-- Карточка 1: Дикун Г.В. -->
-                <a href="dicun/dicun.html" class="glass-panel group rounded-2xl overflow-hidden relative block fade-up cursor-pointer">
-                    <!-- Image Container -->
-                    <div class="h-96 overflow-hidden relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity"></div>
-                        <img src="dicun/dicun-pictures/dicun-photo.jpg" alt="Дикун Г.В." class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700">
-                        
-                        <!-- Badges -->
-                        <div class="absolute top-4 right-4 z-20 flex flex-col gap-2">
-                            <div class="bg-gold-hero/90 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                                Герой СССР
-                            </div>
-                        </div>
+                <!-- Бейдж (Красный для СССР) -->
+                <div class="absolute top-4 left-4 z-20">
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-flag-red/90 text-white rounded backdrop-blur-md shadow-lg border border-red-500/30">
+                        <span class="text-[10px] font-bold uppercase tracking-wider">Герой Советского Союза</span>
                     </div>
+                </div>
 
-                    <!-- Content -->
-                    <div class="absolute bottom-0 left-0 w-full p-6 z-20">
-                        <div class="transform group-hover:-translate-y-2 transition-transform duration-300">
-                            <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-gold-hero transition-colors">
-                                Дикун
-                            </h3>
-                            <p class="text-lg font-medium text-gray-200 mb-2">Георгий Васильевич</p>
-                            
-                            <div class="h-0.5 w-12 bg-gold-hero mb-3 group-hover:w-full transition-all duration-500"></div>
-                            
-                            <p class="text-sm text-gray-400 line-clamp-2 mb-4">
-                                Гвардии майор. Первый командир и основатель 3-й отдельной гвардейской бригады специального назначения.
-                            </p>
-
-                            <span class="inline-flex items-center text-xs font-bold text-gold-hero uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                Подробнее
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </span>
-                        </div>
+                <!-- Контент -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-6 z-20">
+                    <div class="w-10 h-10 mb-4 text-hero-gold drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
                     </div>
-                </a>
-
-                <!-- Здесь могут быть другие карточки героев -->
-
-            </div>
+                    <h3 class="text-2xl font-bold text-white leading-tight mb-1 group-hover:text-hero-gold transition-colors">
+                        Дикун <br>Георгий Васильевич
+                    </h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider">Гвардии старший сержант</p>
+                </div>
+            </a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/10 bg-[#0A0C10] py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-xs text-gray-600">Музей Боевой Славы 3-й Бригады</p>
+
+    <!-- ==========================================
+         РАЗДЕЛ 2: ЛОКАЛЬНЫЕ КОНФЛИКТЫ (2 чел)
+         ========================================== -->
+    <section>
+        <div class="flex items-end gap-4 mb-8 border-b border-white/10 pb-4 fade-up" style="animation-delay: 0.5s;">
+            <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-widest text-white">Локальные конфликты</h2>
+            <span class="text-gray-500 font-mono text-sm mb-1 pb-1">Северный Кавказ</span>
         </div>
-    </footer>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            <!-- Герой 1 (До СВО) -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up" style="animation-delay: 0.6s;">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/1a1a20/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-6 z-20">
+                    <div class="w-8 h-8 mb-3 text-hero-gold">
+                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1 leading-tight">Фамилия <br>Имя</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider">Звание</p>
+                </div>
+            </div>
 
-        document.querySelectorAll('.fade-up').forEach((el) => {
-            observer.observe(el);
-        });
-    </script>
+            <!-- Герой 2 (До СВО) -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up" style="animation-delay: 0.7s;">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/1a1a20/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-6 z-20">
+                    <div class="w-8 h-8 mb-3 text-hero-gold">
+                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1 leading-tight">Фамилия <br>Имя</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider">Звание</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         РАЗДЕЛ 3: СВО (10 чел)
+         ========================================== -->
+    <section>
+        <div class="flex items-end gap-4 mb-8 border-b border-white/10 pb-4 fade-up" style="animation-delay: 0.8s;">
+            <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-widest text-white">Специальная Военная Операция</h2>
+            <span class="text-hero-gold font-bold text-sm mb-1 pb-1">Z</span>
+        </div>
+
+        <!-- Сетка 5 колонок для больших экранов -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            
+            <!-- ====== 5 ПОГИБШИХ (С лентой) ====== -->
+
+            <!-- 1 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
+                </div>
+                <!-- Траурная лента -->
+                <div class="mourning-ribbon"></div>
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="mourning-ribbon"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="mourning-ribbon"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="mourning-ribbon"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="mourning-ribbon"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- ====== 5 ЖИВЫХ (Без лишних слов) ====== -->
+
+            <!-- 6 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/202025/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/202025/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/202025/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/202025/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="absolute inset-0 bg-gray-900">
+                    <img src="https://placehold.co/600x800/202025/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- Футер -->
+<footer class="mt-auto bg-[#0A0C10] border-t border-white/5 relative z-20">
+    <div class="w-full h-1 bg-gradient-to-r from-transparent via-hero-gold/50 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 py-12 text-center">
+        <h4 class="text-white font-bold uppercase tracking-[0.2em] mb-2 text-sm">
+            Слава Спецназу
+        </h4>
+        <div class="flex items-center justify-center gap-4 opacity-30 mt-6">
+            <div class="w-16 h-px bg-white"></div>
+            <svg class="w-4 h-4 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+            <div class="w-16 h-px bg-white"></div>
+        </div>
+        <p class="text-[10px] text-gray-600 mt-6 uppercase tracking-wider">
+            © 2026. Музей Боевой Славы
+        </p>
+    </div>
+</footer>
+
+<!-- Скрипт: Золотые искры -->
+<script>
+    const emberContainer = document.getElementById('embers-container');
+    const EMBER_COUNT = 40; 
+
+    for(let i=0; i < EMBER_COUNT; i++) {
+        let ember = document.createElement('div');
+        ember.className = 'ember';
+        
+        let size = Math.random() * 3 + 1 + 'px';
+        ember.style.width = size;
+        ember.style.height = size;
+        
+        ember.style.left = Math.random() * 100 + 'vw';
+        ember.style.animationDuration = (Math.random() * 5 + 4) + 's';
+        ember.style.animationDelay = (Math.random() * 5) + 's';
+        
+        emberContainer.appendChild(ember);
+    }
+</script>
+
 </body>
 </html>
