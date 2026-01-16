@@ -185,15 +185,15 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <!-- ГЕРОЙ СССР: ДИКУН Г.В. (ИЗМЕНЕННЫЙ БЛОК) -->
+            <!-- ГЕРОЙ СССР: ДИКУН Г.В. (ИСПРАВЛЕННЫЙ БЛОК) -->
             <a href="dicun/dicun.html" class="hero-card rounded-2xl group fade-up flex flex-col" style="animation-delay: 0.4s;">
-                <!-- Блок с фото -->
-                <div class="relative overflow-hidden aspect-[4/3]">
-                    <img src="dicun/dicun-pictures/dicun-photo.jpg" alt="Дикун Георгий Васильевич" class="hero-img w-full h-full object-cover">
+                <!-- Блок с фото, которое теперь отображается полностью -->
+                <div class="relative overflow-hidden">
+                    <img src="dicun/dicun-pictures/dicun-photo.jpg" alt="Дикун Георгий Васильевич" class="hero-img w-full h-auto">
                 </div>
                 
-                <!-- Блок с контентом -->
-                <div class="p-6 flex-grow flex flex-col">
+                <!-- Блок с контентом под фото -->
+                <div class="p-6">
                     <!-- Награда -->
                     <div class="flex items-center gap-3 mb-4">
                         <svg class="w-6 h-6 text-hero-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
@@ -203,7 +203,8 @@
                         </div>
                     </div>
 
-                    <div class="mt-auto">
+                    <!-- Имя и звание -->
+                    <div>
                         <h3 class="text-2xl font-bold text-white leading-tight mb-1 group-hover:text-hero-gold transition-colors">
                             Дикун <br>Георгий Васильевич
                         </h3>
