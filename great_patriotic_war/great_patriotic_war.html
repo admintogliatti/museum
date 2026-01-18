@@ -105,17 +105,15 @@
             position: relative;
             overflow: hidden;
             border-radius: 1.5rem;
-            min-height: 450px; /* Высокие карточки */
+            min-height: 450px; 
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem; /* Уменьшил паддинг для мобильных */
+            /* ИЗМЕНЕНИЕ: Убрал padding отсюда, чтобы управлять им внутри */
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.05);
-            background: #000; /* Черный фон на случай если картинка не прогрузится */
+            background: #000;
         }
         
-        /* ИЗМЕНЕНИЕ НАЧАЛО: Усилил градиент для лучшей читаемости текста */
         .side-card::before {
             content: '';
             position: absolute;
@@ -123,7 +121,6 @@
             background: linear-gradient(to top, rgba(0,0,0,0.95) 25%, rgba(0,0,0,0.7) 50%, transparent 100%);
             z-index: 10;
         }
-        /* ИЗМЕНЕНИЕ КОНЕЦ */
 
         .side-card img {
             position: absolute;
@@ -222,28 +219,25 @@
                 <a href="ussr/ussr.html" class="side-card group ring-1 ring-white/10 hover:ring-flag-red/50 fade-up" style="animation-delay: 0.4s;">
                     <img src="../great_patriotic_war/great_patriotic_war_pictures/ussr.jpg" alt="СССР и союзники">
                     
-                    <div class="relative z-20 flex flex-col h-full">
+                    <!-- ИЗМЕНЕНИЕ НАЧАЛО: Полностью переработана структура контента внутри карточки -->
+                    <div class="relative z-20 flex flex-col h-full p-6 md:p-8">
                         <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-2 h-2 rounded-full bg-flag-red"></div>
-                                <span class="text-flag-red font-bold uppercase tracking-wider text-xs drop-shadow-md">СССР и союзники</span>
-                            </div>
-                            <h2 class="text-4xl font-black uppercase mb-3 text-white group-hover:text-soviet-gold transition-colors drop-shadow-lg">
+                            <span class="inline-block bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full text-flag-red font-bold uppercase tracking-wider text-xs drop-shadow-md mb-4">СССР и союзники</span>
+                            <h2 class="text-6xl md:text-7xl font-black uppercase text-white group-hover:text-soviet-gold transition-colors drop-shadow-lg">
                                 РККА
                             </h2>
-                            <p class="text-gray-200 text-sm font-medium max-w-sm drop-shadow-md leading-relaxed">
+                        </div>
+                        <div class="mt-auto">
+                            <p class="text-base text-gray-200 font-medium max-w-sm drop-shadow-md leading-relaxed mb-6">
                                 Оружие, форма и личные вещи бойцов Красной Армии и стран антигитлеровской коалиции.
                             </p>
-                        </div>
-                        <!-- ИЗМЕНЕНИЕ НАЧАЛО: Кнопка теперь всегда видима -->
-                        <div class="mt-auto pt-6">
-                             <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-flag-red/90 border border-white/10 text-white font-bold text-xs uppercase tracking-wider group-hover:bg-flag-red transition-colors">
+                            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-flag-red/90 border border-white/10 text-white font-bold text-xs uppercase tracking-wider group-hover:bg-flag-red transition-colors">
                                 Смотреть
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                             </span>
+                            </span>
                         </div>
-                        <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
                     </div>
+                    <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
                     
                     <div class="absolute top-6 right-6 z-20 opacity-50 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:rotate-12">
                          <svg class="w-16 h-16 text-flag-red drop-shadow-lg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
@@ -254,36 +248,31 @@
                 <a href="nacis/nacis.html" class="side-card group ring-1 ring-white/10 hover:ring-gray-500/50 fade-up" style="animation-delay: 0.5s;">
                     <img src="../great_patriotic_war/great_patriotic_war_pictures/naci.jpg" alt="Третий Рейх и страны ОСИ" class="grayscale contrast-125">
                     
-                    <div class="relative z-20 flex flex-col h-full">
+                    <!-- ИЗМЕНЕНИЕ НАЧАЛО: Полностью переработана структура контента внутри карточки -->
+                    <div class="relative z-20 flex flex-col h-full p-6 md:p-8">
                         <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
-                                <span class="text-gray-300 font-bold uppercase tracking-wider text-xs drop-shadow-md">Третий Рейх и страны ОСИ</span>
-                            </div>
-                            <h2 class="text-4xl font-black uppercase mb-3 text-gray-200 group-hover:text-white transition-colors drop-shadow-lg">
+                            <span class="inline-block bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full text-gray-300 font-bold uppercase tracking-wider text-xs drop-shadow-md mb-4">Третий Рейх и страны ОСИ</span>
+                            <h2 class="text-6xl md:text-7xl font-black uppercase text-gray-200 group-hover:text-white transition-colors drop-shadow-lg">
                                 Вермахт
                             </h2>
-                            <p class="text-gray-300 text-sm font-medium max-w-sm drop-shadow-md leading-relaxed">
+                        </div>
+                        <div class="mt-auto">
+                            <p class="text-base text-gray-300 font-medium max-w-sm drop-shadow-md leading-relaxed mb-6">
                                 Трофейное оружие, снаряжение и награды противника. Свидетельства поверженной силы.
                             </p>
-                        </div>
-                        <!-- ИЗМЕНЕНИЕ НАЧАЛО: Кнопка теперь всегда видима -->
-                        <div class="mt-auto pt-6">
-                             <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gray-200/90 border border-white/10 text-dark-bg font-bold text-xs uppercase tracking-wider group-hover:bg-white transition-colors">
+                            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gray-200/90 border border-white/10 text-dark-bg font-bold text-xs uppercase tracking-wider group-hover:bg-white transition-colors">
                                 Смотреть
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </span>
                         </div>
-                        <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
                     </div>
+                    <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
                     
-                    <!-- ИЗМЕНЕНИЕ НАЧАЛО: Заменил иконку на более заметную с фоном -->
                     <div class="absolute top-6 right-6 z-20 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
                          <div class="w-14 h-14 bg-black/30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
                             <svg class="w-7 h-7 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
                          </div>
                     </div>
-                    <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
                 </a>
 
             </div>
