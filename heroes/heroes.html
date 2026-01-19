@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -188,16 +187,13 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <!-- ГЕРОЙ СССР: ДИКУН Г.В. (ИСПРАВЛЕННЫЙ БЛОК) -->
+            <!-- ГЕРОЙ СССР: ДИКУН Г.В. -->
             <a href="dicun/dicun.html" class="hero-card rounded-2xl group fade-up flex flex-col" style="animation-delay: 0.4s;">
-                <!-- Блок с фото, которое теперь отображается полностью -->
                 <div class="relative overflow-hidden">
                     <img src="dicun/dicun-pictures/dicun-photo.jpg" alt="Дикун Георгий Васильевич" class="hero-img w-full h-auto">
                 </div>
                 
-                <!-- Блок с контентом под фото -->
                 <div class="p-6">
-                    <!-- Награда -->
                     <div class="flex items-center gap-3 mb-4">
                         <svg class="w-6 h-6 text-hero-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
                         <div>
@@ -205,8 +201,6 @@
                             <p class="text-xs text-gray-500">Указ от 24.03.1945</p>
                         </div>
                     </div>
-
-                    <!-- Имя и звание -->
                     <div>
                         <h3 class="text-2xl font-bold text-white leading-tight mb-1 group-hover:text-hero-gold transition-colors">
                             Дикун <br>Георгий Васильевич
@@ -229,24 +223,36 @@
             <span class="text-gray-500 font-mono text-sm mb-1 pb-1">Северный Кавказ</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <!-- Герой 1 (До СВО) -->
-            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up" style="animation-delay: 0.6s;">
-                <div class="absolute inset-0 bg-gray-900">
-                    <img src="https://placehold.co/600x800/1a1a20/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
+            <!-- ИЗМЕНЕНИЕ НАЧАЛО: Добавлена карточка Ушакова А.Б. -->
+            <a href="ushakov/ushakov.html" class="hero-card rounded-2xl group fade-up flex flex-col" style="animation-delay: 0.6s;">
+                <!-- Траурная лента, т.к. посмертно -->
+                <div class="mourning-ribbon"></div>
+                
+                <div class="relative overflow-hidden">
+                    <img src="ushakov/ushakov-pictures/ushakov-pic.jpg" alt="Ушаков Антон Борисович" class="hero-img w-full h-auto">
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full p-6 z-20">
-                    <div class="w-8 h-8 mb-3 text-hero-gold">
-                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="w-6 h-6 text-hero-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-wider text-white">Герой Российской Федерации</p>
+                            <p class="text-xs text-gray-500">Указ от 29.01.1997 (посмертно)</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1 leading-tight">Фамилия <br>Имя</h3>
-                    <p class="text-xs text-gray-400 uppercase tracking-wider">Звание</p>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white leading-tight mb-1 group-hover:text-hero-gold transition-colors">
+                            Ушаков <br>Антон Борисович
+                        </h3>
+                        <p class="text-xs text-gray-400 uppercase tracking-wider">Гвардии старшина.</p>
+                    </div>
                 </div>
-            </div>
+            </a>
+            <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
 
-            <!-- Герой 2 (До СВО) -->
+            <!-- Заглушка для будущего героя -->
             <div class="hero-card rounded-2xl group aspect-[3/4] fade-up" style="animation-delay: 0.7s;">
                 <div class="absolute inset-0 bg-gray-900">
                     <img src="https://placehold.co/600x800/1a1a20/FFF?text=Герой+РФ" class="hero-img w-full h-full object-cover">
