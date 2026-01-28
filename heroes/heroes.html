@@ -7,131 +7,129 @@
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D52B1E'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z'/%3E%3C/svg%3E">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<!-- Config -->
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    sans: ['Montserrat', 'sans-serif'],
-                },
-                colors: {
-                    'hero-gold': '#D4AF37',       
-                    'dark-bg': '#0F1115',
-                    'card-bg': '#14161B',
-                },
-                backgroundImage: {
-                    'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'hero-gold': '#D4AF37',       
+                        'dark-bg': '#0F1115',
+                        'card-bg': '#14161B',
+                    },
+                    backgroundImage: {
+                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+                    }
                 }
             }
         }
-    }
-</script>
+    </script>
 
-<style>
-    body {
-        background-color: #0F1115;
-        color: #F0F2F5;
-        overflow-x: hidden;
-    }
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F0F2F5;
+            overflow-x: hidden;
+        }
 
-    /* Ambient Light */
-    .ambient-gold {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
-        pointer-events: none;
-        z-index: 0;
-    }
+        /* Ambient Light */
+        .ambient-gold {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    /* Карточка Героя */
-    .hero-card {
-        background: #14161B;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
+        /* Карточка Героя */
+        .hero-card {
+            background: #14161B;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .hero-card:hover {
-        transform: translateY(-7px);
-        border-color: rgba(212, 175, 55, 0.4);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.1);
-    }
+        .hero-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.1);
+        }
 
-    .hero-img {
-        transition: transform 0.7s ease, filter 0.5s ease;
-        filter: grayscale(100%) contrast(110%);
-    }
-    
-    .hero-card:hover .hero-img {
-        transform: scale(1.05);
-        filter: grayscale(0%) contrast(100%);
-    }
+        .hero-img {
+            transition: transform 0.7s ease, filter 0.5s ease;
+            filter: grayscale(100%) contrast(110%);
+        }
+        
+        .hero-card:hover .hero-img {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(100%);
+        }
 
-    /* Траурная лента (CSS) */
-    .mourning-ribbon {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 80px;
-        height: 80px;
-        z-index: 20;
-        pointer-events: none;
-    }
-    .mourning-ribbon::before {
-        content: '';
-        position: absolute;
-        bottom: 15px;
-        right: -25px;
-        width: 100px;
-        height: 20px;
-        background: #000;
-        transform: rotate(-45deg);
-        box-shadow: 0 0 10px rgba(0,0,0,0.8);
-        border-top: 1px solid rgba(255,255,255,0.1);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+        /* Траурная лента (CSS) */
+        .mourning-ribbon {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            z-index: 20;
+            pointer-events: none;
+        }
+        .mourning-ribbon::before {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            right: -25px;
+            width: 100px;
+            height: 20px;
+            background: #000;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-    /* Золотые частицы */
-    .ember {
-        position: fixed;
-        bottom: -20px;
-        background: #D4AF37;
-        border-radius: 50%;
-        opacity: 0;
-        animation: rise linear infinite;
-        box-shadow: 0 0 5px #FFD700;
-        pointer-events: none;
-        z-index: 1;
-    }
-    @keyframes rise {
-        0% { bottom: -20px; opacity: 0; transform: translateX(0); }
-        50% { opacity: 0.4; transform: translateX(20px); }
-        100% { bottom: 100vh; opacity: 0; transform: translateX(40px); }
-    }
+        /* Золотые частицы */
+        .ember {
+            position: fixed;
+            bottom: -20px;
+            background: #D4AF37;
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise linear infinite;
+            box-shadow: 0 0 5px #FFD700;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes rise {
+            0% { bottom: -20px; opacity: 0; transform: translateX(0); }
+            50% { opacity: 0.4; transform: translateX(20px); }
+            100% { bottom: 100vh; opacity: 0; transform: translateX(40px); }
+        }
 
-    /* Анимация появления */
-    .fade-up {
-        animation: fadeUp 0.8s ease-out forwards;
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-</style>
-
+        /* Анимация появления */
+        .fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body class="antialiased font-sans min-h-screen flex flex-col">
 
@@ -228,7 +226,6 @@
             <!-- ГЕРОЙ РФ: УШАКОВ А.Б. -->
             <a href="ushakov/ushakov.html" class="hero-card rounded-2xl group fade-up flex flex-col" style="animation-delay: 0.6s;">
                 <div class="relative overflow-hidden">
-                    <!-- ИЗМЕНЕНИЕ: Лента перемещена внутрь блока с фото -->
                     <div class="mourning-ribbon"></div>
                     <img src="ushakov/ushakov-pictures/ushakov-pic.jpg" alt="Ушаков Антон Борисович" class="hero-img w-full h-auto">
                 </div>
@@ -250,12 +247,10 @@
                 </div>
             </a>
             
-            <!-- ИЗМЕНЕНИЕ НАЧАЛО: Добавлена карточка Дергунова А.В. -->
+            <!-- ГЕРОЙ РФ: ДЕРГУНОВ А.В. -->
             <a href="dergunov/dergunov.html" class="hero-card rounded-2xl group fade-up flex flex-col" style="animation-delay: 0.7s;">
                 <div class="relative overflow-hidden">
-                    <!-- Траурная лента, т.к. посмертно -->
                     <div class="mourning-ribbon"></div>
-                    <!-- TODO: Заменить на реальное фото -->
                     <img src="dergunov/dergunov-pictures/dergunov-pic.jpg" alt="Дергунов Алексей Васильевич" class="hero-img w-full h-auto">
                 </div>
                 
@@ -275,7 +270,6 @@
                     </div>
                 </div>
             </a>
-            <!-- ИЗМЕНЕНИЕ КОНЕЦ -->
 
         </div>
     </section>
@@ -295,25 +289,65 @@
             
             <!-- ====== 5 ПОГИБШИХ (С лентой) ====== -->
 
-            <!-- 1 -->
-            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
-                <div class="relative overflow-hidden">
-                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
-                    <!-- Траурная лента -->
+            <!-- 1. СТАРЧКОВ А.И. -->
+            <a href="starchkov/starchkov.html" class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="relative overflow-hidden h-full">
                     <div class="mourning-ribbon"></div>
+                    <img src="starchkov/starchkov-pictures/starchkov-pic.jpg" alt="Старчков Александр Иванович" class="hero-img w-full h-full object-cover">
                 </div>
                 
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
                 <div class="absolute bottom-0 left-0 w-full p-5 z-20">
                     <div class="flex items-center gap-2 mb-2">
                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
                         <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
                     </div>
-                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
+                    <h3 class="text-lg font-bold text-white leading-tight group-hover:text-hero-gold transition-colors">
+                        Старчков <br>Александр Иванович
+                    </h3>
+                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Гвардии рядовой</p>
                 </div>
-            </div>
+            </a>
 
-            <!-- 2 -->
+            <!-- 2. СОКОЛОВСКИЙ А.А. -->
+            <a href="sokolovsky/sokolovsky.html" class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="relative overflow-hidden h-full">
+                    <div class="mourning-ribbon"></div>
+                    <img src="sokolovsky/sokolovsky-pictures/sokolovsky-pic.jpg" alt="Соколовский Андрей Андреевич" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight group-hover:text-hero-gold transition-colors">
+                        Соколовский <br>Андрей Андреевич
+                    </h3>
+                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Гвардии сержант</p>
+                </div>
+            </a>
+
+            <!-- 3. ШАМШЕЕВ И.С. -->
+            <a href="shamsheev/shamsheev.html" class="hero-card rounded-2xl group aspect-[3/4] fade-up">
+                <div class="relative overflow-hidden h-full">
+                    <div class="mourning-ribbon"></div>
+                    <img src="shamsheev/shamsheev-pictures/shamsheev-pic.jpg" alt="Шамшеев Иван Сергеевич" class="hero-img w-full h-full object-cover">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
+                    <div class="flex items-center gap-2 mb-2">
+                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white leading-tight group-hover:text-hero-gold transition-colors">
+                        Шамшеев <br>Иван Сергеевич
+                    </h3>
+                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Гвардии лейтенант</p>
+                </div>
+            </a>
+
+            <!-- 4. Placeholder (Погибший) -->
             <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
                 <div class="relative overflow-hidden">
                     <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
@@ -329,39 +363,7 @@
                 </div>
             </div>
 
-            <!-- 3 -->
-            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
-                <div class="relative overflow-hidden">
-                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
-                    <div class="mourning-ribbon"></div>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
-                    <div class="flex items-center gap-2 mb-2">
-                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
-                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
-                </div>
-            </div>
-
-            <!-- 4 -->
-            <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
-                <div class="relative overflow-hidden">
-                    <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
-                    <div class="mourning-ribbon"></div>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full p-5 z-20">
-                    <div class="flex items-center gap-2 mb-2">
-                         <svg class="w-5 h-5 text-hero-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
-                        <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Посмертно</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white leading-tight">Фамилия <br>Имя</h3>
-                </div>
-            </div>
-
-            <!-- 5 -->
+            <!-- 5. Placeholder (Погибший) -->
             <div class="hero-card rounded-2xl group aspect-[3/4] fade-up">
                 <div class="relative overflow-hidden">
                     <img src="https://placehold.co/600x800/111/FFF?text=Посмертно" class="hero-img w-full h-full object-cover">
