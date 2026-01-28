@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андрей Андреевич Соколовский | Музей 3-й Бригады</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D52B1E'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z'/%3E%3C/svg%3E">
+
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'flag-white': '#FFFFFF',
+                        'flag-blue': '#0039A6',
+                        'flag-red': '#D52B1E',
+                        'gold-hero': '#D4AF37',
+                        'dark-bg': '#0F1115',
+                        'card-bg': '#181A20',
+                    },
+                    backgroundImage: {
+                        'tricolor-gradient': 'linear-gradient(90deg, #FFFFFF 0%, #0039A6 50%, #D52B1E 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F0F2F5;
+            overflow-x: hidden;
+        }
+        .ambient-light {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(24, 26, 32, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F1115; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-hero selection:text-black">
+
+    <!-- Верхняя полоса триколора -->
+    <div class="fixed top-0 w-full h-1 bg-tricolor-gradient z-[60]"></div>
+
+    <!-- Навигация (Назад) -->
+    <nav class="fixed top-6 left-6 z-50">
+        <a href="../heroes.html" class="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-gray-300 hover:text-white hover:bg-white/10 transition-all group">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="text-sm font-medium uppercase tracking-wider">Назад</span>
+        </a>
+    </nav>
+
+    <!-- HERO SECTION: Портрет и Имя -->
+    <section class="relative min-h-[90vh] flex items-center pt-20 pb-16">
+        <div class="ambient-light top-0 right-0 opacity-50"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Фотография -->
+                <div class="lg:col-span-5 fade-up">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                        <!-- Основное фото Героя -->
+                        <img src="sokolov-pictures/sokolov-pic.jpg" alt="Андрей Андреевич Соколовский" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        
+                        <!-- Звезда Героя (декоративная) -->
+                        <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gold-hero rounded-full flex items-center justify-center shadow-lg shadow-gold-hero/20">
+                                <svg class="w-8 h-8 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z" /></svg>
+                            </div>
+                            <span class="text-gold-hero font-bold uppercase tracking-widest text-sm drop-shadow-md">Герой России</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Текстовый блок -->
+                <div class="lg:col-span-7 fade-up" style="transition-delay: 0.2s;">
+                    <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-gold-hero/30 bg-gold-hero/10">
+                        <span class="text-gold-hero font-bold text-xs uppercase tracking-[0.2em]">
+                            Специальная военная операция
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight uppercase">
+                        Андрей Андреевич <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Соколовский</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-400 font-light mb-8 border-l-2 border-gold-hero pl-6">
+                        Гвардии сержант, старший разведчик группы специального назначения 3-й отдельной гвардейской бригады спецназа ГРУ. Опытный воин, прошедший Сирию и Таджикистан. Посмертно удостоен высшей награды страны за самопожертвование и героизм в бою.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 text-sm">
+                        <div>
+                            <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Дата рождения</span>
+                            <span class="text-white font-medium">1 сентября 1993</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Место рождения</span>
+                            <span class="text-white font-medium">пос. Тогузак, Казахстан</span>
+                        </div>
+                         <div>
+                            <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Дата гибели</span>
+                            <span class="text-white font-medium">29 мая 2022 (28 лет)</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Звание</span>
+                            <span class="text-white font-medium">Гвардии сержант</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <div class="flex items-center gap-4 text-gray-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                            </svg>
+                            <span class="text-sm">Остались жена и двое сыновей</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: БИОГРАФИЯ И ПОДВИГ -->
+    <section class="py-16 relative border-t border-white/5 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Текст -->
+                <div class="lg:col-span-8 space-y-8 fade-up">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 text-white">Последний бой у посёлка Яровая</h2>
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            Судьба Андрея Соколовского — это путь настоящего воина. С детства переехав в Татарстан, он получил образование механизатора, но судьба распорядилась иначе. После срочной службы, где проявил себя как ответственный и способный боец, он вернулся на гражданку, но в 2014 году осознанно подписал контракт, выбрав путь спецназа ГРУ. Его боевой путь пролегал через Таджикистан и Сирию, где он получил бесценный опыт и был награждён медалями за отличие.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            С первых дней специальной военной операции гвардии сержант Соколовский находился на передовой в составе своего легендарного подразделения. 29 мая 2022 года его группа проводила разведку в районе посёлка Яровая. Смежная группа попала в засаду, и Андрей с товарищами немедленно вступили в бой, чтобы прикрыть отход сослуживцев. В ходе ожесточённой перестрелки он был ранен, но продолжал выполнять долг.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-gold-hero">
+                        <h3 class="text-xl font-bold mb-4 text-white">Приняв огонь на себя</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Несмотря на ранение, сержант Соколовский оказывал помощь другим раненым бойцам. Пытаясь добраться до контуженного прапорщика, он подорвался на мине. Истекая кровью, он всё же дополз до товарища. Осознав критичность ситуации — шесть раненых бойцов в обеих группах и превосходящие силы противника — Андрей принял единственно возможное решение. Он остался прикрывать отход товарищей. Метким огнём он уничтожил снайпера и двух стрелков противника, дав своим боевым друзьям драгоценные минуты для эвакуации. Ценой своей жизни он спас как минимум шестерых сослуживцев.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <p class="text-xl font-medium text-white">
+                            Указом Президента Российской Федерации от 11 августа 2022 года «за мужество и героизм, проявленные при исполнении воинского долга», гвардии сержанту Соколовскому Андрею Андреевичу посмертно присвоено звание <span class="text-gold-hero">Героя Российской Федерации</span>. 21 октября 2022 года губернатор Самарской области лично вручил «Золотую Звезду» семье Героя.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Хронология -->
+                <div class="lg:col-span-4 space-y-6 fade-up" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-wide">Боевой путь воина</h3>
+                    <ul class="space-y-6 text-gray-300 border-l-2 border-white/10 pl-8">
+                        <li>
+                            <strong class="block text-white">2011</strong>
+                            <span class="text-sm text-gray-400">Призван на срочную службу. Проявил себя, был назначен заместителем командира взвода.</span>
+                        </li>
+                        <li>
+                            <strong class="block text-white">2014</strong>
+                            <span class="text-sm text-gray-400">Возвращается в армию по контракту. Зачислен разведчиком в элитную 3-ю гвардейскую бригаду спецназа ГРУ.</span>
+                        </li>
+                        <li>
+                            <strong class="block text-white">2015-2017</strong>
+                            <span class="text-sm text-gray-400">Выполняет боевые задачи в Таджикистане и участвует в военной операции в Сирии. Получает боевые награды.</span>
+                        </li>
+                         <li>
+                            <strong class="block text-white">24 февраля 2022</strong>
+                            <span class="text-sm text-gray-400">В составе своего подразделения вступает в специальную военную операцию.</span>
+                        </li>
+                         <li>
+                            <strong class="block text-white">29 мая 2022</strong>
+                            <span class="text-sm text-gray-400">Совершает подвиг самопожертвования у посёлка Яровая, спасая жизни товарищей.</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <h4 class="font-bold text-white mb-3">Боевые награды</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs rounded-full border border-flag-blue/30 bg-flag-blue/10 text-blue-300">Медаль «За боевые отличия»</span>
+                            <span class="px-3 py-1 text-xs rounded-full border border-flag-red/30 bg-flag-red/10 text-red-300">Медаль «За ратную доблесть»</span>
+                            <span class="px-3 py-1 text-xs rounded-full border border-gold-hero/30 bg-gold-hero/10 text-gold-hero">Медаль «Участнику военной операции в Сирии»</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ПАМЯТЬ -->
+    <section class="py-16 relative border-t border-white/5 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 uppercase tracking-wide fade-up text-center">Память о Герое</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Карта 1 -->
+                <div class="glass-panel p-6 rounded-2xl fade-up">
+                    <h3 class="font-bold text-white mb-2">Аллея Славы в Тольятти</h3>
+                    <p class="text-sm text-gray-400">21 октября 2022 года на Аллее Славы воинской части, где служил Андрей, был торжественно открыт его бронзовый бюст.</p>
+                </div>
+                <!-- Карта 2 -->
+                <div class="glass-panel p-6 rounded-2xl fade-up" style="transition-delay: 0.1s;">
+                    <h3 class="font-bold text-white mb-2">Имя на школе в Тетюшах</h3>
+                    <p class="text-sm text-gray-400">Тетюшской средней школе № 2, где учился Герой, 4 сентября 2023 года присвоено его имя.</p>
+                </div>
+                <!-- Карта 3 -->
+                <div class="glass-panel p-6 rounded-2xl fade-up" style="transition-delay: 0.2s;">
+                    <h3 class="font-bold text-white mb-2">Мемориальная доска в Тольятти</h3>
+                    <p class="text-sm text-gray-400">В школе №62 города Тольятти установлена мемориальная доска. Юнармейский отряд носит имя «Гвардеец» в его честь.</p>
+                </div>
+                 <!-- Карта 4 -->
+                 <div class="glass-panel p-6 rounded-2xl fade-up" style="transition-delay: 0.3s;">
+                    <h3 class="font-bold text-white mb-2">Площадь Славы в Самаре</h3>
+                    <p class="text-sm text-gray-400">9 мая 2023 года имя Андрея Соколовского нанесли на памятную доску Героев России мемориала «Куйбышевцы — Герои».</p>
+                </div>
+            </div>
+
+            <figure class="mt-12 fade-up">
+                <!-- Фото бюста на Аллее Славы -->
+                <img src="sokolov-pictures/sokolov-monument.jpg" alt="Бюст А.А. Соколовского на Аллее Славы в Тольятти" class="w-full max-w-3xl mx-auto h-auto rounded-xl grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
+                <figcaption class="text-center text-xs text-gray-500 py-3">Бюст Героя России Андрея Соколовского на Аллее Славы в Тольятти. Похоронен в селе Чинчурино Тетюшского района, где его память чтут земляки.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#0A0C10] py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h4 class="font-bold text-white tracking-widest uppercase text-sm mb-1">Музей Боевой Славы</h4>
+            </div>
+            
+            <div class="flex items-center gap-2 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="w-2 h-2 rounded-full bg-white"></div>
+                <div class="w-2 h-2 rounded-full bg-flag-blue"></div>
+                <div class="w-2 h-2 rounded-full bg-flag-red"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Observer API для анимации появления
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
