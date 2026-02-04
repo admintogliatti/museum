@@ -71,13 +71,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .stat-card {
-            transition: transform 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
-        }
+        /* Hover effects removed */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0F1115; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -108,7 +102,7 @@
                     <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
                         <!-- Фото Красного -->
-                        <img src="krasny-pictures/krasny-pic.jpg" alt="Виталий Сергеевич Красный" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <img src="krasny-pictures/krasny-pic.jpg" alt="Виталий Сергеевич Красный" class="w-full h-auto object-cover">
                         
                         <!-- Звезда Героя (декоративная) -->
                         <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3">
@@ -134,7 +128,7 @@
                     </h1>
                     
                     <p class="text-xl text-gray-400 font-light mb-8 border-l-2 border-gold-hero pl-6">
-                        Гвардии младший лейтенант спецназа. Удостоен звания Героя Российской Федерации за героизм при спасении товарища и уничтожение вражеской техники. Продолжает службу в рядах Вооруженных Сил.
+                        Гвардии младший лейтенант спецназа. Удостоен звания Героя Российской Федерации за героизм при спасении товарища и уничтожение вражеской техники.
                     </p>
 
                     <div class="grid grid-cols-2 gap-6 text-sm">
@@ -146,10 +140,7 @@
                             <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Место рождения</span>
                             <span class="text-white font-medium">г. Перевальск</span>
                         </div>
-                         <div>
-                            <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Статус</span>
-                            <span class="text-white font-medium">В строю</span>
-                        </div>
+                         <!-- Статус убран -->
                         <div>
                             <span class="block text-gray-500 uppercase text-xs tracking-wider mb-1">Звание</span>
                             <span class="text-white font-medium">Гвардии младший лейтенант</span>
@@ -188,7 +179,7 @@
                                 <div class="w-2 h-2 bg-flag-red rounded-full"></div>
                                 <span class="text-gray-400 text-sm font-bold uppercase">Уничтожено лично и в составе группы</span>
                             </div>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 <!-- БМП -->
                                 <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center">
                                     <div class="text-4xl font-black text-white mb-1">8</div>
@@ -207,12 +198,7 @@
                                     <div class="text-xs text-gray-400 uppercase font-medium">Танка</div>
                                     <div class="mt-2 h-1 w-8 mx-auto bg-flag-red/50 rounded-full"></div>
                                 </div>
-                                <!-- СОЛДАТЫ -->
-                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center">
-                                    <div class="text-4xl font-black text-white mb-1">200+</div>
-                                    <div class="text-xs text-gray-400 uppercase font-medium">Боевиков</div>
-                                    <div class="mt-2 h-1 w-8 mx-auto bg-flag-red/50 rounded-full"></div>
-                                </div>
+                                <!-- Графа с боевиками убрана -->
                             </div>
                         </div>
 
@@ -253,7 +239,7 @@
                            Во время боя гвардии старший сержант Красный заметил вспышку танкового орудия и закрыл собой раненого товарища. Получив осколочные ранения и контузию, он не покинул поле боя. Превозмогая боль, Виталий продолжил вести огонь, прикрывая отход группы, а затем вынес раненого в укрытие.
                         </p>
                         <p class="text-gray-400 text-sm leading-relaxed">
-                           Вернувшись на позицию, он корректировал огонь артиллерии, благодаря чему вражеский танк был уничтожен. После лечения в госпитале Виталий Красный вернулся в строй к своим боевым товарищам.
+                           Вернувшись на позицию, он корректировал огонь артиллерии, благодаря чему вражеский танк был уничтожен.
                         </p>
                     </div>
                     
@@ -293,9 +279,9 @@
     <!-- SECTION: НАГРАДЫ И СЛУЖБА -->
     <section class="py-16 relative border-t border-white/5 bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 uppercase tracking-wide fade-up text-center">Награды и Служба</h2>
+            <h2 class="text-3xl font-bold mb-8 uppercase tracking-wide fade-up text-center">Награды и Память</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Карта 1 -->
                 <div class="glass-panel p-6 rounded-2xl fade-up">
                     <h3 class="font-bold text-white mb-2">Золотая Звезда</h3>
@@ -311,11 +297,7 @@
                     <h3 class="font-bold text-white mb-2">Семья</h3>
                     <p class="text-sm text-gray-400">Виталий женат, воспитывает троих детей, являясь для них примером мужества.</p>
                 </div>
-                 <!-- Карта 4 -->
-                 <div class="glass-panel p-6 rounded-2xl fade-up" style="transition-delay: 0.3s;">
-                    <h3 class="font-bold text-white mb-2">Продолжение службы</h3>
-                    <p class="text-sm text-gray-400">После ранения и реабилитации вернулся в зону СВО. В 2023 году получил звание младшего лейтенанта.</p>
-                </div>
+                 <!-- Карта про продолжение службы убрана -->
             </div>
         </div>
     </section>
@@ -358,4 +340,3 @@
     </script>
 </body>
 </html>
-
