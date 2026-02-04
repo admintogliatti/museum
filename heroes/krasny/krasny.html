@@ -71,6 +71,13 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .stat-card {
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0F1115; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -158,18 +165,88 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
-                <!-- Текст -->
-                <div class="lg:col-span-8 space-y-8 fade-up">
+                <!-- Текст и Статистика -->
+                <div class="lg:col-span-8 space-y-12 fade-up">
+                    
+                    <!-- Биография кратко -->
                     <div>
                         <h2 class="text-3xl font-bold mb-6 text-white">Боевой путь</h2>
-                        <p class="text-gray-300 leading-relaxed mb-6">
-                           Виталий Красный родился в семье защитников Родины. Вырос в Тольятти, занимался в военно-патриотическом клубе. Работал на заводе, но в 2014 году по зову сердца отправился на Донбасс, вступив в народное ополчение. С 2016 года служит по контракту в Вооруженных Силах РФ.
-                        </p>
                         <p class="text-gray-300 leading-relaxed">
-                            С февраля 2022 года участвует в СВО. За 15 месяцев боевых действий лично и в составе группы уничтожил 8 БМП, 2 БТР, 3 танка и захватил в плен 18 офицеров противника.
+                           Виталий Красный родился в семье защитников Родины. Вырос в Тольятти, занимался в военно-патриотическом клубе. Работал на заводе, но в 2014 году по зову сердца отправился на Донбасс, вступив в народное ополчение. С 2016 года служит по контракту в Вооруженных Силах РФ. С февраля 2022 года участвует в СВО.
                         </p>
                     </div>
 
+                    <!-- ГРАФИЧЕСКИЙ БЛОК СТАТИСТИКИ -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
+                        <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b border-white/10 pb-4">
+                            Результаты боевой работы
+                        </h3>
+                        
+                        <!-- Секция УНИЧТОЖЕНО -->
+                        <div class="mb-8">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-2 h-2 bg-flag-red rounded-full"></div>
+                                <span class="text-gray-400 text-sm font-bold uppercase">Уничтожено лично и в составе группы</span>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <!-- БМП -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center">
+                                    <div class="text-4xl font-black text-white mb-1">8</div>
+                                    <div class="text-xs text-gray-400 uppercase font-medium">БМП-2</div>
+                                    <div class="mt-2 h-1 w-8 mx-auto bg-flag-red/50 rounded-full"></div>
+                                </div>
+                                <!-- БТР -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center">
+                                    <div class="text-4xl font-black text-white mb-1">2</div>
+                                    <div class="text-xs text-gray-400 uppercase font-medium">БТР-80</div>
+                                    <div class="mt-2 h-1 w-8 mx-auto bg-flag-red/50 rounded-full"></div>
+                                </div>
+                                <!-- ТАНКИ -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center">
+                                    <div class="text-4xl font-black text-white mb-1">3</div>
+                                    <div class="text-xs text-gray-400 uppercase font-medium">Танка</div>
+                                    <div class="mt-2 h-1 w-8 mx-auto bg-flag-red/50 rounded-full"></div>
+                                </div>
+                                <!-- СОЛДАТЫ -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center">
+                                    <div class="text-4xl font-black text-white mb-1">200+</div>
+                                    <div class="text-xs text-gray-400 uppercase font-medium">Боевиков</div>
+                                    <div class="mt-2 h-1 w-8 mx-auto bg-flag-red/50 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Секция ЗАХВАЧЕНО -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-2 h-2 bg-gold-hero rounded-full"></div>
+                                <span class="text-gray-400 text-sm font-bold uppercase">Трофеи и пленные</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- ОФИЦЕРЫ -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-gold-hero/20 text-center relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-2 opacity-10">
+                                        <svg class="w-12 h-12 text-gold-hero" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                                    </div>
+                                    <div class="text-5xl font-black text-gold-hero mb-1">18</div>
+                                    <div class="text-sm text-white font-bold">Офицеров ВСУ</div>
+                                    <div class="text-xs text-gray-500 mt-1">взято в плен лично и группой</div>
+                                </div>
+                                <!-- ТЕХНИКА -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center flex flex-col justify-center">
+                                    <div class="text-3xl font-bold text-white mb-1">5 <span class="text-sm text-gray-400 font-normal">ед.</span></div>
+                                    <div class="text-xs text-gray-400 uppercase font-medium">Военной техники</div>
+                                </div>
+                                <!-- ОРУЖИЕ -->
+                                <div class="stat-card bg-black/40 p-4 rounded-xl border border-white/5 text-center flex flex-col justify-center">
+                                    <div class="text-3xl font-bold text-white mb-1">7 <span class="text-sm text-gray-400 font-normal">обр.</span></div>
+                                    <div class="text-xs text-gray-400 uppercase font-medium">Иностранного оружия</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Описание подвига -->
                     <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-gold-hero">
                         <h3 class="text-xl font-bold mb-4 text-white">Подвиг командира</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
@@ -281,3 +358,4 @@
     </script>
 </body>
 </html>
+
